@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import AITeacher from "./ai-teacher";
 import AudioPlayer from "./audio-player";
+import { useAudio } from "@/hooks/use-audio";
 import type { Lesson } from "@shared/schema";
 import type { LessonContent } from "@/types/lesson";
 
@@ -34,6 +35,7 @@ export default function LessonInterface({
   className = ""
 }: LessonInterfaceProps) {
   const [selectedAnswer, setSelectedAnswer] = useState<string>("");
+  const { audioState } = useAudio();
   const content = lesson.content as LessonContent;
   const progressPercentage = (currentStep / totalSteps) * 100;
 
@@ -86,6 +88,7 @@ export default function LessonInterface({
                 messageBengali={lesson.titleBengali || "চলুন শিখি!"}
                 showSpeechBubble={true}
                 size="md"
+                isAnimating={audioState.isPlaying}
               />
               
               <div className="mt-6">

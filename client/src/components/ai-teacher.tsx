@@ -5,13 +5,15 @@ interface AITeacherProps {
   messageBengali?: string;
   showSpeechBubble?: boolean;
   size?: "sm" | "md" | "lg";
+  isAnimating?: boolean;
 }
 
 export default function AITeacher({
   message = "Let's learn together!",
   messageBengali = "চলুন একসাথে শিখি!",
   showSpeechBubble = false,
-  size = "md"
+  size = "md",
+  isAnimating = false
 }: AITeacherProps) {
   const sizeClasses = {
     sm: "w-32 h-32",
@@ -22,8 +24,15 @@ export default function AITeacher({
   return (
     <div className="flex justify-center relative" data-testid="ai-teacher">
       <motion.div
-        animate={{ y: [-5, 5, -5] }}
-        transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ 
+          y: isAnimating ? [-8, 8, -8] : [-5, 5, -5],
+          scale: isAnimating ? [1, 1.05, 1] : [1, 1.02, 1]
+        }}
+        transition={{ 
+          duration: isAnimating ? 1.5 : 3, 
+          repeat: Infinity, 
+          ease: "easeInOut" 
+        }}
         className="relative"
       >
         {/* Animated background circle */}
@@ -33,52 +42,117 @@ export default function AITeacher({
           transition={{ duration: 2, repeat: Infinity }}
         />
         
-        {/* AI Teacher Character - Islamic Style */}
-        <div className={`${sizeClasses[size]} rounded-full border-4 border-golden-yellow shadow-2xl bg-gradient-to-br from-islamic-green to-success-green flex items-center justify-center relative overflow-hidden`}>
-          {/* Islamic-appropriate character without eyes/nose */}
-          <div className="relative w-full h-full flex items-center justify-center">
-            {/* Face outline */}
-            <div className="relative w-20 h-24 bg-gradient-to-b from-yellow-100 to-yellow-200 rounded-full border-2 border-white">
+        {/* AI Teacher Character - 3D Islamic Style */}
+        <div className={`${sizeClasses[size]} rounded-3xl border-4 border-golden-yellow shadow-2xl bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center relative overflow-hidden`}>
+          {/* Main Character Body */}
+          <div className="relative w-full h-full flex flex-col items-center justify-center">
+            
+            {/* Traditional Cap/Taqiyah */}
+            <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 w-24 h-12 bg-gradient-to-b from-gray-600 to-gray-700 rounded-t-full border-2 border-gray-500 shadow-lg z-10"></div>
+            
+            {/* Head/Face */}
+            <motion.div 
+              className="relative w-20 h-24 bg-gradient-to-b from-yellow-100 to-yellow-200 rounded-full border-4 border-white shadow-lg z-20"
+              animate={{ rotateZ: [-1, 1, -1] }}
+              transition={{ duration: 4, repeat: Infinity }}
+            >
               {/* Beard */}
-              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-14 h-8 bg-gradient-to-b from-gray-700 to-gray-800 rounded-b-full border-2 border-white"></div>
+              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-10 bg-gradient-to-b from-gray-600 to-gray-800 rounded-b-full border-2 border-gray-500 shadow-inner"></div>
               
-              {/* Mouth for smiling */}
-              <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 w-6 h-3 border-b-2 border-dark-slate rounded-b-full opacity-60"></div>
+              {/* Smiling mouth */}
+              <motion.div 
+                className="absolute bottom-8 left-1/2 transform -translate-x-1/2 w-8 h-4 border-b-2 border-dark-slate rounded-b-full opacity-70"
+                animate={{ scaleX: [1, 1.1, 1] }}
+                transition={{ duration: 3, repeat: Infinity }}
+              ></motion.div>
               
-              {/* Traditional cap/hat */}
-              <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-16 h-6 bg-white rounded-t-full border-2 border-islamic-green"></div>
-            </div>
+              {/* Gentle cheek highlights */}
+              <div className="absolute top-6 left-2 w-3 h-3 bg-pink-200 rounded-full opacity-40"></div>
+              <div className="absolute top-6 right-2 w-3 h-3 bg-pink-200 rounded-full opacity-40"></div>
+            </motion.div>
+
+            {/* Traditional Islamic Clothing - Thobe/Kurta */}
+            <motion.div 
+              className="relative w-32 h-40 bg-gradient-to-b from-gray-300 to-gray-400 rounded-t-3xl mt-2 border-2 border-gray-500 shadow-lg"
+              animate={{ scaleY: [1, 1.02, 1] }}
+              transition={{ duration: 3, repeat: Infinity }}
+            >
+              {/* Clothing details */}
+              <div className="absolute top-4 left-1/2 transform -translate-x-1/2 w-1 h-8 bg-gray-600 rounded-full"></div>
+              <div className="absolute top-8 left-1/2 transform -translate-x-1/2 w-8 h-1 bg-gray-500 rounded-full"></div>
+              
+              {/* Arms */}
+              <motion.div 
+                className="absolute top-6 -left-6 w-12 h-16 bg-gradient-to-b from-gray-300 to-gray-400 rounded-full border-2 border-gray-500 shadow-md"
+                animate={{ rotate: [-5, 5, -5] }}
+                transition={{ duration: 4, repeat: Infinity }}
+              ></motion.div>
+              <motion.div 
+                className="absolute top-6 -right-6 w-12 h-16 bg-gradient-to-b from-gray-300 to-gray-400 rounded-full border-2 border-gray-500 shadow-md"
+                animate={{ rotate: [5, -5, 5] }}
+                transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
+              ></motion.div>
+              
+              {/* Hands in prayer position */}
+              <motion.div 
+                className="absolute bottom-8 left-1/2 transform -translate-x-1/2 w-8 h-8 bg-yellow-200 rounded-full border-2 border-yellow-300 shadow-md"
+                animate={{ y: [-2, 2, -2] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              ></motion.div>
+            </motion.div>
           </div>
           
           {/* Name label */}
-          <div className="absolute bottom-2 text-white text-center">
-            <div className="text-xs font-medium bg-black bg-opacity-20 rounded-full px-2 py-1">Hujur</div>
+          <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center">
+            <div className="text-sm font-bold bg-islamic-green text-white rounded-full px-4 py-2 shadow-lg border-2 border-white">
+              Hujur صاحب
+            </div>
           </div>
         </div>
 
-        {/* Floating icons around character */}
+        {/* Floating Islamic symbols around character */}
         <motion.div
-          className="absolute -top-4 -right-4 w-12 h-12 bg-golden-yellow rounded-full flex items-center justify-center"
-          animate={{ y: [-3, 3, -3] }}
-          transition={{ duration: 2, repeat: Infinity, delay: 0 }}
+          className="absolute -top-6 -right-6 w-14 h-14 bg-gradient-to-br from-golden-yellow to-warm-sand rounded-full flex items-center justify-center shadow-lg border-2 border-white"
+          animate={{ 
+            y: [-4, 4, -4],
+            rotate: [0, 5, 0]
+          }}
+          transition={{ duration: 3, repeat: Infinity, delay: 0 }}
         >
-          <span className="text-islamic-green text-lg">📖</span>
+          <span className="text-islamic-green text-xl">📖</span>
         </motion.div>
         
         <motion.div
-          className="absolute top-16 -left-6 w-10 h-10 bg-warm-sand rounded-full flex items-center justify-center"
-          animate={{ y: [-3, 3, -3] }}
-          transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+          className="absolute top-20 -left-8 w-12 h-12 bg-gradient-to-br from-warm-sand to-golden-yellow rounded-full flex items-center justify-center shadow-lg border-2 border-white"
+          animate={{ 
+            y: [-3, 3, -3],
+            rotate: [0, -5, 0]
+          }}
+          transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
         >
-          <span className="text-white text-sm">🤲</span>
+          <span className="text-white text-lg">🤲</span>
         </motion.div>
         
         <motion.div
-          className="absolute -bottom-2 left-8 w-8 h-8 bg-success-green rounded-full flex items-center justify-center"
-          animate={{ y: [-3, 3, -3] }}
+          className="absolute -bottom-4 left-10 w-10 h-10 bg-gradient-to-br from-success-green to-islamic-green rounded-full flex items-center justify-center shadow-lg border-2 border-white"
+          animate={{ 
+            y: [-3, 3, -3],
+            scale: [1, 1.1, 1]
+          }}
           transition={{ duration: 2, repeat: Infinity, delay: 1 }}
         >
-          <span className="text-white text-xs">⭐</span>
+          <span className="text-white text-sm">⭐</span>
+        </motion.div>
+        
+        <motion.div
+          className="absolute top-8 right-8 w-8 h-8 bg-gradient-to-br from-pink-200 to-pink-300 rounded-full flex items-center justify-center shadow-md border border-white"
+          animate={{ 
+            y: [-2, 2, -2],
+            opacity: [0.7, 1, 0.7]
+          }}
+          transition={{ duration: 1.5, repeat: Infinity, delay: 1.5 }}
+        >
+          <span className="text-pink-600 text-xs">💫</span>
         </motion.div>
 
         {/* Speech bubble */}
