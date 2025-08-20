@@ -15,7 +15,7 @@ export default function AudioPlayer({
   onLanguageChange,
   className = ""
 }: AudioPlayerProps) {
-  const { audioState, play, pause } = useAudio();
+  const { audioState, playText, pause } = useAudio();
 
   const handlePlayAudio = async (language: "en" | "bn") => {
     if (audioState.isPlaying) {
@@ -23,13 +23,9 @@ export default function AudioPlayer({
       return;
     }
 
-    // In a real app, these would be actual audio URLs
-    const audioUrls = {
-      en: "/audio/lesson-english.mp3",
-      bn: "/audio/lesson-bengali.mp3"
-    };
-
-    await play(audioUrls[language]);
+    // Use text-to-speech instead of audio files
+    const textToSpeak = language === "en" ? englishText : bengaliText;
+    await playText(textToSpeak, language);
     onLanguageChange?.(language);
   };
 

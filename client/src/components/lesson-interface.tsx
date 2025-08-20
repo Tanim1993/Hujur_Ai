@@ -90,8 +90,20 @@ export default function LessonInterface({
               
               <div className="mt-6">
                 <AudioPlayer
-                  englishText="English"
-                  bengaliText="বাংলা"
+                  englishText={
+                    content.letter 
+                      ? `This is the letter ${content.transliteration}. ${content.meaning || ''}` 
+                      : content.arabic 
+                        ? `${content.transliteration}. ${content.meaning}` 
+                        : lesson.title
+                  }
+                  bengaliText={
+                    content.letter 
+                      ? `এটি ${content.transliteration} অক্ষর। ${content.bengaliMeaning || lesson.titleBengali?.split(' - ')[1] || ''}` 
+                      : content.arabic 
+                        ? `${content.transliteration}। ${content.bengaliMeaning || content.meaning}` 
+                        : lesson.titleBengali || lesson.title
+                  }
                   onLanguageChange={(lang) => console.log("Language changed to:", lang)}
                 />
               </div>
