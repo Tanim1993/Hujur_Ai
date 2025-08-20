@@ -58,7 +58,7 @@ export class MemStorage implements IStorage {
       description: "Learn to read and understand the Holy Quran",
       icon: "book-quran",
       color: "islamic-green",
-      totalLessons: 12,
+      totalLessons: 5,
       order: 1,
     };
 
@@ -100,14 +100,18 @@ export class MemStorage implements IStorage {
         content: {
           letter: "ا",
           transliteration: "Alif",
-          explanation: "Alif is the first letter of the Arabic alphabet",
+          explanation: "Alif is the first letter of the Arabic alphabet. It makes a long 'aa' sound.",
           interactive: {
             type: "letter-recognition",
             options: ["ا", "ب", "ت"],
-            correct: "ا"
+            correct: "ا",
+            question: "Can you find the letter Alif?"
           }
         },
-        audioUrls: {},
+        audioUrls: {
+          en: "/audio/alif-english.mp3",
+          bn: "/audio/alif-bengali.mp3"
+        },
         order: 1,
         difficulty: "beginner"
       },
@@ -119,15 +123,88 @@ export class MemStorage implements IStorage {
         content: {
           letter: "ب",
           transliteration: "Baa",
-          explanation: "Baa is the second letter of the Arabic alphabet",
+          explanation: "Baa is the second letter of the Arabic alphabet. It sounds like the English letter 'B'.",
           interactive: {
             type: "letter-recognition",
             options: ["ا", "ب", "ت"],
-            correct: "ب"
+            correct: "ب",
+            question: "Which one is the letter Baa?"
           }
         },
-        audioUrls: {},
+        audioUrls: {
+          en: "/audio/baa-english.mp3",
+          bn: "/audio/baa-bengali.mp3"
+        },
         order: 2,
+        difficulty: "beginner"
+      },
+      {
+        id: "quran-lesson-3",
+        chapterId: "quran-chapter",
+        title: "Arabic Letters - Taa",
+        titleBengali: "আরবি অক্ষর - তা",
+        content: {
+          letter: "ت",
+          transliteration: "Taa",
+          explanation: "Taa is the third letter of the Arabic alphabet. It sounds like the English letter 'T'.",
+          interactive: {
+            type: "letter-recognition",
+            options: ["ا", "ب", "ت"],
+            correct: "ت",
+            question: "Can you identify the letter Taa?"
+          }
+        },
+        audioUrls: {
+          en: "/audio/taa-english.mp3",
+          bn: "/audio/taa-bengali.mp3"
+        },
+        order: 3,
+        difficulty: "beginner"
+      },
+      {
+        id: "quran-lesson-4",
+        chapterId: "quran-chapter",
+        title: "First Word - Allah",
+        titleBengali: "প্রথম শব্দ - আল্লাহ",
+        content: {
+          arabic: "الله",
+          transliteration: "Allah",
+          meaning: "Allah - The One and Only God",
+          bengaliMeaning: "আল্লাহ - একমাত্র সৃষ্টিকর্তা",
+          explanation: "Allah is the Arabic word for God. It is the most important word in Islam.",
+          interactive: {
+            type: "recitation-practice",
+            question: "Practice saying 'Allah' with proper pronunciation"
+          }
+        },
+        audioUrls: {
+          en: "/audio/allah-english.mp3",
+          bn: "/audio/allah-bengali.mp3"
+        },
+        order: 4,
+        difficulty: "beginner"
+      },
+      {
+        id: "quran-lesson-5",
+        chapterId: "quran-chapter",
+        title: "Bismillah",
+        titleBengali: "বিসমিল্লাহ",
+        content: {
+          arabic: "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+          transliteration: "Bismillahir-Rahmanir-Raheem",
+          meaning: "In the name of Allah, the Most Gracious, the Most Merciful",
+          bengaliMeaning: "পরম করুণাময় ও দয়ালু আল্লাহর নামে",
+          explanation: "This is how we begin everything we do. It reminds us that Allah is with us.",
+          interactive: {
+            type: "recitation-practice",
+            question: "Can you recite Bismillah?"
+          }
+        },
+        audioUrls: {
+          en: "/audio/bismillah-english.mp3",
+          bn: "/audio/bismillah-bengali.mp3"
+        },
+        order: 5,
         difficulty: "beginner"
       }
     ];
@@ -194,6 +271,7 @@ export class MemStorage implements IStorage {
       overallProgress: 25,
       streak: 7,
       achievements: ["first-lesson", "seven-day-streak", "perfect-score"],
+      createdAt: new Date(),
     };
     this.users.set(defaultUser.id, defaultUser);
   }
@@ -212,9 +290,11 @@ export class MemStorage implements IStorage {
     const user: User = { 
       ...insertUser, 
       id, 
+      language: insertUser.language || "en",
       overallProgress: 0, 
       streak: 0, 
-      achievements: [] 
+      achievements: [],
+      createdAt: new Date()
     };
     this.users.set(id, user);
     return user;
@@ -240,7 +320,13 @@ export class MemStorage implements IStorage {
 
   async createChapter(insertChapter: InsertChapter): Promise<Chapter> {
     const id = randomUUID();
-    const chapter: Chapter = { ...insertChapter, id };
+    const chapter: Chapter = { 
+      ...insertChapter, 
+      id,
+      nameArabic: insertChapter.nameArabic || null,
+      nameBengali: insertChapter.nameBengali || null,
+      totalLessons: insertChapter.totalLessons || 0
+    };
     this.chapters.set(id, chapter);
     return chapter;
   }
@@ -258,7 +344,13 @@ export class MemStorage implements IStorage {
 
   async createLesson(insertLesson: InsertLesson): Promise<Lesson> {
     const id = randomUUID();
-    const lesson: Lesson = { ...insertLesson, id };
+    const lesson: Lesson = { 
+      ...insertLesson, 
+      id,
+      titleBengali: insertLesson.titleBengali || null,
+      audioUrls: insertLesson.audioUrls || {},
+      difficulty: insertLesson.difficulty || "beginner"
+    };
     this.lessons.set(id, lesson);
     return lesson;
   }
@@ -292,6 +384,8 @@ export class MemStorage implements IStorage {
       const newProgress: UserProgress = {
         ...progressData,
         id,
+        completed: progressData.completed || false,
+        score: progressData.score || null,
         completedAt: progressData.completed ? new Date() : null
       };
       this.userProgress.set(id, newProgress);

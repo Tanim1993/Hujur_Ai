@@ -104,7 +104,7 @@ export default function Home() {
               />
               <ProgressCard
                 type="achievements"
-                value={user?.achievements?.length || 0}
+                value={Array.isArray(user?.achievements) ? user.achievements.length : 0}
                 subtitle="Badges earned"
               />
             </div>
@@ -145,7 +145,7 @@ export default function Home() {
             
             <div className="grid md:grid-cols-4 gap-6">
               {achievements.map((achievement) => {
-                const isEarned = user?.achievements?.includes(achievement.id) || false;
+                const isEarned = Array.isArray(user?.achievements) && user.achievements.includes(achievement.id);
                 return (
                   <AchievementBadge
                     key={achievement.id}

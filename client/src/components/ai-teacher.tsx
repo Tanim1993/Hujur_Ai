@@ -33,12 +33,26 @@ export default function AITeacher({
           transition={{ duration: 2, repeat: Infinity }}
         />
         
-        {/* AI Teacher Character */}
+        {/* AI Teacher Character - Islamic Style */}
         <div className={`${sizeClasses[size]} rounded-full border-4 border-golden-yellow shadow-2xl bg-gradient-to-br from-islamic-green to-success-green flex items-center justify-center relative overflow-hidden`}>
-          {/* Simple character representation */}
-          <div className="text-white text-center">
-            <div className="text-4xl mb-2">👨‍🏫</div>
-            <div className="text-sm font-medium">Hujur</div>
+          {/* Islamic-appropriate character without eyes/nose */}
+          <div className="relative w-full h-full flex items-center justify-center">
+            {/* Face outline */}
+            <div className="relative w-20 h-24 bg-gradient-to-b from-yellow-100 to-yellow-200 rounded-full border-2 border-white">
+              {/* Beard */}
+              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-14 h-8 bg-gradient-to-b from-gray-700 to-gray-800 rounded-b-full border-2 border-white"></div>
+              
+              {/* Mouth for smiling */}
+              <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 w-6 h-3 border-b-2 border-dark-slate rounded-b-full opacity-60"></div>
+              
+              {/* Traditional cap/hat */}
+              <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-16 h-6 bg-white rounded-t-full border-2 border-islamic-green"></div>
+            </div>
+          </div>
+          
+          {/* Name label */}
+          <div className="absolute bottom-2 text-white text-center">
+            <div className="text-xs font-medium bg-black bg-opacity-20 rounded-full px-2 py-1">Hujur</div>
           </div>
         </div>
 

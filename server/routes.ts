@@ -16,6 +16,22 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get single chapter
+  app.get("/api/chapters/:chapterId", async (req, res) => {
+    try {
+      const { chapterId } = req.params;
+      const chapter = await storage.getChapter(chapterId);
+      
+      if (!chapter) {
+        return res.status(404).json({ message: "Chapter not found" });
+      }
+      
+      res.json(chapter);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch chapter" });
+    }
+  });
+
   // Get lessons by chapter
   app.get("/api/chapters/:chapterId/lessons", async (req, res) => {
     try {

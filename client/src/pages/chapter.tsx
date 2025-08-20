@@ -182,7 +182,7 @@ export default function ChapterPage() {
                         )}
                       </div>
 
-                      {lessonProgress?.score !== undefined && lessonProgress.score > 0 && (
+                      {lessonProgress?.score !== undefined && lessonProgress.score !== null && lessonProgress.score > 0 && (
                         <div className="mt-4 pt-4 border-t border-gray-100">
                           <div className="flex justify-between items-center text-sm">
                             <span className="text-gray-600">Best Score:</span>
