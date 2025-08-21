@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import AITeacher from "./ai-teacher";
 import AudioPlayer from "./audio-player";
+import VoiceInteraction from "./voice-interaction";
+import VoiceCommandPanel from "./voice-command-panel";
 import { useAudio } from "@/hooks/use-audio";
 import type { Lesson } from "@shared/schema";
 import type { LessonContent } from "@/types/lesson";
@@ -19,6 +21,7 @@ interface LessonInterfaceProps {
   onAnswer: (answer: string) => void;
   showCorrectFeedback: boolean;
   showIncorrectFeedback: boolean;
+  onPlayAudio?: (language: 'en' | 'bn') => void;
   className?: string;
 }
 
@@ -32,6 +35,7 @@ export default function LessonInterface({
   onAnswer,
   showCorrectFeedback,
   showIncorrectFeedback,
+  onPlayAudio,
   className = ""
 }: LessonInterfaceProps) {
   const [selectedAnswer, setSelectedAnswer] = useState<string>("");
@@ -181,6 +185,21 @@ export default function LessonInterface({
                   </div>
                 </div>
               )}
+
+              {/* Voice Practice Section */}
+              {(content.letter || content.arabic) && (
+                <VoiceInteraction
+                  targetText={content.letter || content.transliteration || content.arabic || "Practice"}
+                  targetLanguage={content.arabic ? 'en' : 'en'}
+                  pronunciation={content.transliteration}
+                  onSuccess={() => {
+                    console.log('Pronunciation practice successful!');
+                  }}
+                  onRetry={() => {
+                    console.log('Encouraging user to try again');
+                  }}
+                />
+              )}
               
               {/* Action Buttons */}
               <div className="flex space-x-4">
@@ -206,6 +225,14 @@ export default function LessonInterface({
           </div>
         </div>
       </div>
+
+      {/* Voice Command Panel */}
+      <VoiceCommandPanel
+        onNext={onNext}
+        onRepeat={onRepeat}
+        onPlayAudio={onPlayAudio}
+        onGoHome={onBack}
+      />
     </div>
   );
 }

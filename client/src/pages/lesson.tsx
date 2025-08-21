@@ -111,6 +111,17 @@ export default function LessonPage() {
     }
   };
 
+  const handlePlayAudio = (language: 'en' | 'bn') => {
+    // Get the current lesson content for audio
+    if (content.english && language === 'en') {
+      playText(content.english, 'en');
+    } else if (content.bengali && language === 'bn') {
+      playText(content.bengali, 'bn');
+    } else if (content.transliteration && language === 'en') {
+      playText(content.transliteration, 'en');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-ghost-white" data-testid="lesson-page">
       <NavigationHeader />
@@ -126,6 +137,7 @@ export default function LessonPage() {
           onAnswer={handleAnswer}
           showCorrectFeedback={showCorrectFeedback}
           showIncorrectFeedback={showIncorrectFeedback}
+          onPlayAudio={handlePlayAudio}
         />
       </main>
     </div>
