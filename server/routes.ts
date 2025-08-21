@@ -16,6 +16,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Get unlocked chapters for user
+  app.get("/api/users/:userId/chapters", async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const unlockedChapters = await storage.getUnlockedChapters(userId);
+      res.json(unlockedChapters);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch unlocked chapters" });
+    }
+  });
+
   // Get single chapter
   app.get("/api/chapters/:chapterId", async (req, res) => {
     try {

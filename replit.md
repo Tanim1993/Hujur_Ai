@@ -2,7 +2,15 @@
 
 ## Overview
 
-Hujur is an interactive Islamic learning platform featuring an AI teacher that guides users through lessons on Quran, Salah (prayer), and Dua (supplication). The application provides a gamified learning experience with progress tracking, achievements, and multilingual support (English and Bengali). Users can learn through structured chapters and lessons, with audio support and interactive exercises.
+Hujur is an interactive Islamic learning platform featuring an AI teacher that guides users through lessons on Quran, Salah (prayer), and Dua (supplication). The application provides a gamified learning experience with progress tracking, achievements, and multilingual support (English and Bengali). Users can learn through structured chapters and lessons, with text-to-speech audio support and interactive exercises.
+
+## Recent Changes (August 2025)
+
+- **Chapter Progression System**: Implemented unlock logic where completing 80% of a chapter unlocks the next one
+- **Expanded Beginner Content**: Added Arabic Numbers and Islamic Greetings chapters for comprehensive beginner learning
+- **Text-to-Speech Audio**: Replaced missing audio files with browser Speech Synthesis API for immediate audio functionality
+- **Realistic 3D AI Teacher**: Enhanced character design with professional, 3D-style appearance and interactive animations
+- **5 Complete Learning Chapters**: Quran (5 lessons), Arabic Numbers (10 lessons), Islamic Greetings (5 lessons), Salah (10 lessons), and Dua (8 lessons)
 
 ## User Preferences
 

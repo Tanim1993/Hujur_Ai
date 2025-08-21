@@ -32,6 +32,9 @@ export interface IStorage {
   getChapterProgress(userId: string, chapterId: string): Promise<UserProgress[]>;
   updateProgress(progress: InsertUserProgress): Promise<UserProgress>;
   getProgressByLesson(userId: string, lessonId: string): Promise<UserProgress | undefined>;
+  
+  // Chapter unlock methods
+  getUnlockedChapters(userId: string): Promise<Chapter[]>;
 }
 
 export class MemStorage implements IStorage {
@@ -62,6 +65,30 @@ export class MemStorage implements IStorage {
       order: 1,
     };
 
+    const numbersChapter: Chapter = {
+      id: "numbers-chapter",
+      name: "Arabic Numbers",
+      nameArabic: "الأرقام العربية",
+      nameBengali: "আরবি সংখ্যা",
+      description: "Learn Arabic numerals from 1 to 10",
+      icon: "123",
+      color: "blue-500",
+      totalLessons: 10,
+      order: 2,
+    };
+
+    const greetingsChapter: Chapter = {
+      id: "greetings-chapter",
+      name: "Islamic Greetings",
+      nameArabic: "التحيات الإسلامية",
+      nameBengali: "ইসলামিক শুভেচ্ছা",
+      description: "Learn common Islamic greetings and their responses",
+      icon: "hand-heart",
+      color: "purple-500",
+      totalLessons: 5,
+      order: 3,
+    };
+
     const salahChapter: Chapter = {
       id: "salah-chapter",
       name: "Salah",
@@ -71,7 +98,7 @@ export class MemStorage implements IStorage {
       icon: "pray",
       color: "warm-sand",
       totalLessons: 10,
-      order: 2,
+      order: 4,
     };
 
     const duaChapter: Chapter = {
@@ -83,10 +110,12 @@ export class MemStorage implements IStorage {
       icon: "hands-praying",
       color: "golden-yellow",
       totalLessons: 8,
-      order: 3,
+      order: 5,
     };
 
     this.chapters.set(quranChapter.id, quranChapter);
+    this.chapters.set(numbersChapter.id, numbersChapter);
+    this.chapters.set(greetingsChapter.id, greetingsChapter);
     this.chapters.set(salahChapter.id, salahChapter);
     this.chapters.set(duaChapter.id, duaChapter);
 
@@ -237,6 +266,78 @@ export class MemStorage implements IStorage {
       }
     ];
 
+    const numbersLessons: Lesson[] = [
+      {
+        id: "numbers-lesson-1",
+        chapterId: "numbers-chapter",
+        title: "Number One - Wahid",
+        titleBengali: "সংখ্যা এক - ওয়াহিদ",
+        content: {
+          arabic: "١",
+          transliteration: "Wahid",
+          meaning: "One",
+          bengaliMeaning: "এক",
+          explanation: "This is the Arabic numeral for one. In Islam, it represents the Oneness of Allah.",
+          interactive: {
+            type: "number-recognition",
+            options: ["١", "٢", "٣"],
+            correct: "١",
+            question: "Can you find the Arabic number for one?"
+          }
+        },
+        audioUrls: {},
+        order: 1,
+        difficulty: "beginner"
+      },
+      {
+        id: "numbers-lesson-2",
+        chapterId: "numbers-chapter",
+        title: "Number Two - Ithnan",
+        titleBengali: "সংখ্যা দুই - ইছনান",
+        content: {
+          arabic: "٢",
+          transliteration: "Ithnan",
+          meaning: "Two",
+          bengaliMeaning: "দুই",
+          explanation: "This is the Arabic numeral for two.",
+          interactive: {
+            type: "number-recognition",
+            options: ["١", "٢", "٣"],
+            correct: "٢",
+            question: "Which one shows the number two?"
+          }
+        },
+        audioUrls: {},
+        order: 2,
+        difficulty: "beginner"
+      }
+    ];
+
+    const greetingsLessons: Lesson[] = [
+      {
+        id: "greetings-lesson-1",
+        chapterId: "greetings-chapter",
+        title: "As-Salamu Alaikum",
+        titleBengali: "আস-সালামু আলাইকুম",
+        content: {
+          arabic: "السَّلَامُ عَلَيْكُمْ",
+          transliteration: "As-Salamu Alaikum",
+          meaning: "Peace be upon you",
+          bengaliMeaning: "আপনার উপর শান্তি বর্ষিত হোক",
+          explanation: "This is the Islamic greeting. We say this when we meet other Muslims.",
+          interactive: {
+            type: "greeting-practice",
+            question: "When should you say As-Salamu Alaikum?",
+            options: ["When meeting someone", "When leaving", "Only on Friday"],
+            correct: "When meeting someone"
+          }
+        },
+        audioUrls: {},
+        order: 1,
+        difficulty: "beginner"
+      }
+    ];
+
     const duaLessons: Lesson[] = [
       {
         id: "dua-lesson-1",
@@ -260,6 +361,8 @@ export class MemStorage implements IStorage {
     ];
 
     quranLessons.forEach(lesson => this.lessons.set(lesson.id, lesson));
+    numbersLessons.forEach(lesson => this.lessons.set(lesson.id, lesson));
+    greetingsLessons.forEach(lesson => this.lessons.set(lesson.id, lesson));
     salahLessons.forEach(lesson => this.lessons.set(lesson.id, lesson));
     duaLessons.forEach(lesson => this.lessons.set(lesson.id, lesson));
 
@@ -396,6 +499,35 @@ export class MemStorage implements IStorage {
   async getProgressByLesson(userId: string, lessonId: string): Promise<UserProgress | undefined> {
     return Array.from(this.userProgress.values())
       .find(progress => progress.userId === userId && progress.lessonId === lessonId);
+  }
+
+  async getUnlockedChapters(userId: string): Promise<Chapter[]> {
+    const allChapters = await this.getAllChapters();
+    const userProgress = await this.getUserProgress(userId);
+    
+    const unlockedChapters: Chapter[] = [];
+    
+    for (const chapter of allChapters) {
+      if (chapter.order === 1) {
+        // First chapter is always unlocked
+        unlockedChapters.push(chapter);
+      } else {
+        // Check if previous chapter is completed
+        const previousChapter = allChapters.find(c => c.order === chapter.order - 1);
+        if (previousChapter) {
+          const previousChapterProgress = userProgress.filter(p => p.chapterId === previousChapter.id && p.completed);
+          const completedLessons = previousChapterProgress.length;
+          
+          // Unlock if at least 80% of previous chapter is completed
+          const requiredLessons = Math.ceil(previousChapter.totalLessons * 0.8);
+          if (completedLessons >= requiredLessons) {
+            unlockedChapters.push(chapter);
+          }
+        }
+      }
+    }
+    
+    return unlockedChapters;
   }
 }
 

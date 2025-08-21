@@ -14,7 +14,7 @@ const USER_ID = "default-user";
 
 export default function Home() {
   const { data: chapters = [] } = useQuery<Chapter[]>({
-    queryKey: ["/api/chapters"],
+    queryKey: ["/api/users", USER_ID, "chapters"],
   });
 
   const { data: user } = useQuery<UserType>({
