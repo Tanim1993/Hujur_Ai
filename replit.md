@@ -6,6 +6,12 @@ Hujur is an interactive Islamic learning platform featuring an AI teacher that g
 
 ## Recent Changes (August 2025)
 
+- **Ampara Learning Module**: Added comprehensive 30 Para (Juz) chapter for structured Quran reading
+  - **30 Traditional Sections**: Complete Quran divided into daily reading portions following Islamic tradition
+  - **Progressive Learning**: From Al-Fatiha through all major Surahs with verse-by-verse guidance
+  - **Structured Content**: Each Para includes starting/ending Surahs, verse ranges, and key teachings
+  - **Interactive Elements**: Verse recognition, comprehension checks, and story sequencing activities
+  - **Positioned After Noorani Qaida**: Natural progression from Arabic fundamentals to Quran reading
 - **Noorani Qaida Learning Module**: Comprehensive implementation of traditional Islamic Arabic learning methodology
   - **5 Progressive Lessons**: From basic alphabet to letter connections with proper Tajweed foundations
   - **Interactive Exercises**: Letter recognition, pronunciation practice, and reading comprehension
@@ -21,7 +27,7 @@ Hujur is an interactive Islamic learning platform featuring an AI teacher that g
 - **Expanded Beginner Content**: Added Arabic Numbers and Islamic Greetings chapters for comprehensive beginner learning
 - **Text-to-Speech Audio**: Replaced missing audio files with browser Speech Synthesis API for immediate audio functionality
 - **Realistic 3D AI Teacher**: Enhanced character design with professional, 3D-style appearance and interactive animations
-- **5 Complete Learning Chapters**: Quran (5 lessons), Arabic Numbers (10 lessons), Islamic Greetings (5 lessons), Salah (10 lessons), and Dua (8 lessons)
+- **6 Complete Learning Chapters**: Noorani Qaida (5 lessons), Ampara 30 Para (30 lessons), Quran (5 lessons), Arabic Numbers (10 lessons), Islamic Greetings (5 lessons), Salah (10 lessons), and Dua (8 lessons)
 
 ## User Preferences
 

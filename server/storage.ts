@@ -106,6 +106,18 @@ export class MemStorage implements IStorage {
       order: 1,
     };
 
+    const amparaChapter: Chapter = {
+      id: "ampara-chapter",
+      name: "Ampara (30 Para)",
+      nameArabic: "الأمبارة (٣٠ بارة)",
+      nameBengali: "আম্পারা (৩০ পারা)",
+      description: "Learn Quran reading through the 30 traditional sections",
+      icon: "book-open-check",
+      color: "islamic-green",
+      totalLessons: 30,
+      order: 2,
+    };
+
     const quranChapter: Chapter = {
       id: "quran-chapter",
       name: "Quran",
@@ -115,7 +127,7 @@ export class MemStorage implements IStorage {
       icon: "book-quran",
       color: "islamic-green",
       totalLessons: 5,
-      order: 2,
+      order: 3,
     };
 
     const numbersChapter: Chapter = {
@@ -127,7 +139,7 @@ export class MemStorage implements IStorage {
       icon: "123",
       color: "blue-500",
       totalLessons: 10,
-      order: 3,
+      order: 4,
     };
 
     const greetingsChapter: Chapter = {
@@ -139,7 +151,7 @@ export class MemStorage implements IStorage {
       icon: "hand-heart",
       color: "purple-500",
       totalLessons: 5,
-      order: 4,
+      order: 5,
     };
 
     const salahChapter: Chapter = {
@@ -151,7 +163,7 @@ export class MemStorage implements IStorage {
       icon: "pray",
       color: "warm-sand",
       totalLessons: 10,
-      order: 5,
+      order: 6,
     };
 
     const duaChapter: Chapter = {
@@ -163,10 +175,11 @@ export class MemStorage implements IStorage {
       icon: "hands-praying",
       color: "golden-yellow",
       totalLessons: 8,
-      order: 6,
+      order: 7,
     };
 
     this.chapters.set(nooraniChapter.id, nooraniChapter);
+    this.chapters.set(amparaChapter.id, amparaChapter);
     this.chapters.set(quranChapter.id, quranChapter);
     this.chapters.set(numbersChapter.id, numbersChapter);
     this.chapters.set(greetingsChapter.id, greetingsChapter);
@@ -529,7 +542,90 @@ export class MemStorage implements IStorage {
       }
     ];
 
+    // Ampara lessons - 30 Para of the Quran
+    const amparaLessons: Lesson[] = [
+      {
+        id: "ampara-lesson-1",
+        chapterId: "ampara-chapter",
+        title: "Para 1: Al-Fatiha to Al-Baqarah (verse 141)",
+        titleBengali: "পারা ১: আল-ফাতিহা থেকে আল-বাকারা (আয়াত ১৪১)",
+        content: {
+          lesson_type: "ampara",
+          para_number: 1,
+          starting_surah: "Al-Fatiha",
+          ending_surah: "Al-Baqarah",
+          starting_verse: 1,
+          ending_verse: 141,
+          explanation: "Begin your Quran journey with the opening chapter and first section of Al-Baqarah",
+          key_teachings: ["Opening of the Quran", "Guidance for mankind", "Stories of early believers"],
+          interactive: {
+            type: "verse-recognition",
+            question: "Identify the opening verse of the Quran"
+          }
+        },
+        audioUrls: {
+          en: "/audio/ampara-1-english.mp3",
+          bn: "/audio/ampara-1-bengali.mp3"
+        },
+        order: 1,
+        difficulty: "beginner"
+      },
+      {
+        id: "ampara-lesson-2",
+        chapterId: "ampara-chapter",
+        title: "Para 2: Al-Baqarah (verse 142-252)",
+        titleBengali: "পারা ২: আল-বাকারা (আয়াত ১৪২-২৫২)",
+        content: {
+          lesson_type: "ampara",
+          para_number: 2,
+          starting_surah: "Al-Baqarah",
+          ending_surah: "Al-Baqarah",
+          starting_verse: 142,
+          ending_verse: 252,
+          explanation: "Continue with Al-Baqarah covering change of Qibla and laws",
+          key_teachings: ["Change of Qibla", "Laws and regulations", "Stories of prophets"],
+          interactive: {
+            type: "comprehension-check",
+            question: "What major change is mentioned in this Para?"
+          }
+        },
+        audioUrls: {
+          en: "/audio/ampara-2-english.mp3",
+          bn: "/audio/ampara-2-bengali.mp3"
+        },
+        order: 2,
+        difficulty: "beginner"
+      },
+      {
+        id: "ampara-lesson-3",
+        chapterId: "ampara-chapter",
+        title: "Para 3: Al-Baqarah (verse 253) to Al-Imran (verse 92)",
+        titleBengali: "পারা ৩: আল-বাকারা (আয়াত ২৫৩) থেকে আল-ইমরান (আয়াত ৯২)",
+        content: {
+          lesson_type: "ampara",
+          para_number: 3,
+          starting_surah: "Al-Baqarah",
+          ending_surah: "Al-Imran",
+          starting_verse: 253,
+          ending_verse: 92,
+          explanation: "Transition from Al-Baqarah to Al-Imran with stories of Jesus and Mary",
+          key_teachings: ["Story of Jesus (Isa)", "Story of Mary (Maryam)", "Unity in faith"],
+          interactive: {
+            type: "story-sequence",
+            question: "Arrange the events in the story of Maryam"
+          }
+        },
+        audioUrls: {
+          en: "/audio/ampara-3-english.mp3",
+          bn: "/audio/ampara-3-bengali.mp3"
+        },
+        order: 3,
+        difficulty: "beginner"
+      }
+    ];
+
     nooraniLessons.forEach(lesson => this.lessons.set(lesson.id, lesson));
+    amparaLessons.forEach(lesson => this.lessons.set(lesson.id, lesson));
     quranLessons.forEach(lesson => this.lessons.set(lesson.id, lesson));
     numbersLessons.forEach(lesson => this.lessons.set(lesson.id, lesson));
     greetingsLessons.forEach(lesson => this.lessons.set(lesson.id, lesson));
