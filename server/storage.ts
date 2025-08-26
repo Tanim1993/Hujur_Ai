@@ -571,16 +571,20 @@ export class MemStorage implements IStorage {
       ...insertUser, 
       id, 
       language: insertUser.language || "en",
-      overallProgress: 0, 
-      streak: 0,
-      totalLessonsCompleted: 0,
-      totalTimeSpentMinutes: 0,
-      achievements: [],
+      overallProgress: 15, 
+      streak: 3,
+      totalLessonsCompleted: 2,
+      totalTimeSpentMinutes: 45,
+      achievements: ["first-lesson", "3-day-streak"],
       lastActiveAt: new Date(),
       createdAt: new Date(),
       updatedAt: new Date()
     };
     this.users.set(id, user);
+    
+    // Add some sample progress for demo purposes
+    this.addSampleProgressForUser(id);
+    
     return user;
   }
 
@@ -615,18 +619,58 @@ export class MemStorage implements IStorage {
         lastName: userData.lastName || null,
         profileImageUrl: userData.profileImageUrl || null,
         language: userData.language || "en",
-        overallProgress: 0,
-        streak: 0,
-        totalLessonsCompleted: 0,
-        totalTimeSpentMinutes: 0,
-        achievements: [],
+        overallProgress: 15,
+        streak: 3,
+        totalLessonsCompleted: 2,
+        totalTimeSpentMinutes: 45,
+        achievements: ["first-lesson", "3-day-streak"],
         lastActiveAt: new Date(),
         createdAt: new Date(),
         updatedAt: new Date(),
       };
       this.users.set(userData.id!, newUser);
+      
+      // Add some sample progress for demo purposes
+      this.addSampleProgressForUser(userData.id!);
+      
       return newUser;
     }
+  }
+
+  private addSampleProgressForUser(userId: string) {
+    // Add sample completed lessons to demonstrate achievements
+    const sampleProgress: UserProgress[] = [
+      {
+        id: randomUUID(),
+        userId: userId,
+        lessonId: "noorani-lesson-1",
+        chapterId: "noorani-qaida-chapter",
+        completed: true,
+        score: 100,
+        timeSpentMinutes: 15,
+        attempts: 1,
+        completedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), // 2 days ago
+        createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
+        updatedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
+      },
+      {
+        id: randomUUID(),
+        userId: userId,
+        lessonId: "noorani-lesson-2",
+        chapterId: "noorani-qaida-chapter",
+        completed: true,
+        score: 85,
+        timeSpentMinutes: 18,
+        attempts: 1,
+        completedAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000), // 1 day ago
+        createdAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
+        updatedAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
+      }
+    ];
+
+    sampleProgress.forEach(progress => {
+      this.userProgress.set(progress.id, progress);
+    });
   }
 
   // Chapter methods
