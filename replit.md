@@ -6,6 +6,11 @@ Hujur is an interactive Islamic learning platform featuring an AI teacher that g
 
 ## Recent Changes (August 2025)
 
+- **Advanced Voice Features**: Implemented comprehensive voice interaction system with three major components:
+  - **Tajweed Pronunciation Analysis**: AI-powered feedback on Quranic pronunciation with real-time Tajweed rules assessment
+  - **Imam Mode**: Interactive prayer practice sessions with step-by-step guidance and timing
+  - **Multilingual Voice Commands**: Support for English, Bengali, Arabic, and Urdu voice commands
+- **Voice Recognition Integration**: Added pronunciation practice with speech-to-text feedback for lessons
 - **Chapter Progression System**: Implemented unlock logic where completing 80% of a chapter unlocks the next one
 - **Expanded Beginner Content**: Added Arabic Numbers and Islamic Greetings chapters for comprehensive beginner learning
 - **Text-to-Speech Audio**: Replaced missing audio files with browser Speech Synthesis API for immediate audio functionality

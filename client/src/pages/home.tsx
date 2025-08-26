@@ -111,6 +111,27 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Advanced Voice Features Banner */}
+        <section className="py-8 px-4 bg-gradient-to-r from-purple-600 to-blue-600">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="bg-white rounded-xl shadow-lg p-8">
+              <div className="text-4xl mb-4">🎤</div>
+              <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                New: Advanced Voice Features!
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Experience Islamic learning with AI-powered Tajweed pronunciation analysis, 
+                guided prayer sessions, and multilingual voice commands in English, Bengali, Arabic & Urdu.
+              </p>
+              <Link href="/advanced-voice">
+                <Button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 text-lg">
+                  Try Voice Features Now →
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </section>
+
         {/* Chapter Selection */}
         <section className="py-12 px-4">
           <div className="max-w-7xl mx-auto">
