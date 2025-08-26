@@ -1,14 +1,29 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar, integer, jsonb, boolean, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, integer, jsonb, boolean, timestamp, index } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
+// Session storage table.
+// (IMPORTANT) This table is mandatory for Replit Auth, don't drop it.
+export const sessions = pgTable(
+  "sessions",
+  {
+    sid: varchar("sid").primaryKey(),
+    sess: jsonb("sess").notNull(),
+    expire: timestamp("expire").notNull(),
+  },
+  (table) => [index("IDX_session_expire").on(table.expire)],
+);
+
+// User storage table.
+// (IMPORTANT) This table is mandatory for Replit Auth, don't drop it.
 export const users = pgTable("users", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  username: text("username").notNull().unique(),
+  username: text("username").unique(),
   email: text("email").unique(),
   firstName: text("first_name"),
   lastName: text("last_name"),
+  profileImageUrl: text("profile_image_url"),
   language: text("language").notNull().default("en"), // "en" or "bn"
   overallProgress: integer("overall_progress").notNull().default(0),
   streak: integer("streak").notNull().default(0),
@@ -162,6 +177,7 @@ export const insertStreakHistorySchema = createInsertSchema(streakHistory).omit(
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type UpdateUser = z.infer<typeof updateUserSchema>;
 export type User = typeof users.$inferSelect;
+export type UpsertUser = typeof users.$inferInsert;
 export type InsertChapter = z.infer<typeof insertChapterSchema>;
 export type Chapter = typeof chapters.$inferSelect;
 export type InsertLesson = z.infer<typeof insertLessonSchema>;

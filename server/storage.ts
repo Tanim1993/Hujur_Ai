@@ -2,6 +2,7 @@ import {
   type User, 
   type InsertUser,
   type UpdateUser,
+  type UpsertUser,
   type Chapter, 
   type InsertChapter,
   type Lesson, 
@@ -21,11 +22,12 @@ import {
 import { randomUUID } from "crypto";
 
 export interface IStorage {
-  // User methods
+  // User methods (IMPORTANT) these user operations are mandatory for Replit Auth.
   getUser(id: string): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
   updateUser(id: string, updates: UpdateUser): Promise<User | undefined>;
+  upsertUser(user: UpsertUser): Promise<User>;
 
   // Chapter methods
   getAllChapters(): Promise<Chapter[]>;
@@ -589,6 +591,42 @@ export class MemStorage implements IStorage {
     const updatedUser = { ...user, ...updates, updatedAt: new Date() };
     this.users.set(id, updatedUser);
     return updatedUser;
+  }
+
+  async upsertUser(userData: UpsertUser): Promise<User> {
+    const existingUser = this.users.get(userData.id!);
+    
+    if (existingUser) {
+      // Update existing user
+      const updatedUser = {
+        ...existingUser,
+        ...userData,
+        updatedAt: new Date(),
+      };
+      this.users.set(userData.id!, updatedUser);
+      return updatedUser;
+    } else {
+      // Create new user
+      const newUser: User = {
+        id: userData.id!,
+        username: userData.username || null,
+        email: userData.email || null,
+        firstName: userData.firstName || null,
+        lastName: userData.lastName || null,
+        profileImageUrl: userData.profileImageUrl || null,
+        language: userData.language || "en",
+        overallProgress: 0,
+        streak: 0,
+        totalLessonsCompleted: 0,
+        totalTimeSpentMinutes: 0,
+        achievements: [],
+        lastActiveAt: new Date(),
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+      this.users.set(userData.id!, newUser);
+      return newUser;
+    }
   }
 
   // Chapter methods

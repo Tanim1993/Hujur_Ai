@@ -6,17 +6,33 @@ import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import NavigationHeader from "@/components/navigation-header";
+import { useAuth } from "@/hooks/useAuth";
+import { useToast } from "@/hooks/use-toast";
+import { isUnauthorizedError } from "@/lib/authUtils";
 import type { UserAnalytics } from "@shared/schema";
 
 export default function AnalyticsPage() {
-  const userId = "default-user"; // In a real app, get from auth context
+  const { user, isLoading: authLoading, isAuthenticated } = useAuth();
+  const { toast } = useToast();
+
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    if (!authLoading && !isAuthenticated) {
+      toast({
+        title: "Unauthorized",
+        description: "You are logged out. Logging in again...",
+        variant: "destructive",
+      });
+      setTimeout(() => {
+        window.location.href = "/api/login";
+      }, 500);
+      return;
+    }
+  }, [isAuthenticated, authLoading, toast]);
 
   const { data: analytics, isLoading } = useQuery<UserAnalytics>({
-    queryKey: [`/api/users/${userId}/analytics`],
-  });
-
-  const { data: user } = useQuery({
-    queryKey: [`/api/users/${userId}`],
+    queryKey: [`/api/users/${user?.id}/analytics`],
+    enabled: !!user?.id,
   });
 
   const formatTime = (minutes: number): string => {

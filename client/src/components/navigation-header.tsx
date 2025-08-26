@@ -1,18 +1,14 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link, useLocation } from "wouter";
+import { useAuth } from "@/hooks/useAuth";
 import type { User } from "@shared/schema";
-import { Church, User as UserIcon, BarChart, Home, BookOpen, Mic } from "lucide-react";
-
-const USER_ID = "default-user";
+import { Church, User as UserIcon, BarChart, Home, BookOpen, Mic, LogOut } from "lucide-react";
 
 export default function NavigationHeader() {
   const [language, setLanguage] = useState<"en" | "bn">("en");
   const [location] = useLocation();
-
-  const { data: user } = useQuery<User>({
-    queryKey: ["/api/users", USER_ID],
-  });
+  const { user, isAuthenticated } = useAuth();
 
   const toggleLanguage = () => {
     setLanguage(prev => prev === "en" ? "bn" : "en");
@@ -114,8 +110,41 @@ export default function NavigationHeader() {
                 বাং
               </button>
             </div>
-            <div className="w-10 h-10 bg-gradient-to-r from-islamic-green to-success-green rounded-full flex items-center justify-center">
-              <UserIcon className="text-white" size={20} />
+            <div className="flex items-center space-x-3">
+              {/* User Profile */}
+              {user?.profileImageUrl ? (
+                <img 
+                  src={user.profileImageUrl} 
+                  alt="Profile" 
+                  className="w-10 h-10 rounded-full object-cover"
+                />
+              ) : (
+                <div className="w-10 h-10 bg-gradient-to-r from-islamic-green to-success-green rounded-full flex items-center justify-center">
+                  <UserIcon className="text-white" size={20} />
+                </div>
+              )}
+              
+              {/* User Name */}
+              {user && (
+                <div className="hidden sm:block text-right">
+                  <div className="text-sm font-medium text-gray-900">
+                    {user.firstName || user.username || 'Student'}
+                  </div>
+                  <div className="text-xs text-gray-500">
+                    {user.email}
+                  </div>
+                </div>
+              )}
+
+              {/* Logout Button */}
+              <button
+                onClick={() => window.location.href = '/api/logout'}
+                className="p-2 text-gray-600 hover:text-red-600 hover:bg-gray-100 rounded-lg transition-colors"
+                title="Sign Out"
+                data-testid="button-logout"
+              >
+                <LogOut size={18} />
+              </button>
             </div>
           </div>
         </div>
