@@ -166,6 +166,18 @@ export class MemStorage implements IStorage {
       order: 6,
     };
 
+    const nooraniQaidaV2Chapter: Chapter = {
+      id: "noorani-qaida-v2-chapter",
+      name: "Noorani Qaida Version 2",
+      nameArabic: "نوراني قاعدة الإصدار الثاني",
+      nameBengali: "নূরানি কায়েদা সংস্করণ ২",
+      description: "Comprehensive Duolingo-style Arabic learning with AI feedback and interactive lessons",
+      icon: "graduation-cap",
+      color: "emerald-600",
+      totalLessons: 20,
+      order: 2,
+    };
+
     const duaChapter: Chapter = {
       id: "dua-chapter",
       name: "Dua",
@@ -179,6 +191,7 @@ export class MemStorage implements IStorage {
     };
 
     this.chapters.set(nooraniChapter.id, nooraniChapter);
+    this.chapters.set(nooraniQaidaV2Chapter.id, nooraniQaidaV2Chapter);
     this.chapters.set(amparaChapter.id, amparaChapter);
     this.chapters.set(quranChapter.id, quranChapter);
     this.chapters.set(numbersChapter.id, numbersChapter);
@@ -624,7 +637,643 @@ export class MemStorage implements IStorage {
       }
     ];
 
+    // Noorani Qaida Version 2 lessons - comprehensive curriculum
+    const nooraniV2Lessons: Lesson[] = [
+      // Chapter 1: Introduction to Arabic Letters
+      {
+        id: "noorani-v2-lesson-1",
+        chapterId: "noorani-qaida-v2-chapter",
+        title: "Chapter 1.1 - Introduction to Arabic Script (Alif, Ba, Ta)",
+        titleBengali: "অধ্যায় ১.১ - আরবি লিপির পরিচয় (আলিফ, বা, তা)",
+        content: {
+          lesson_type: "noorani_v2",
+          chapter: "Introduction to Arabic Letters",
+          letters: ["ا", "ب", "ت"],
+          transliterations: ["Alif", "Baa", "Taa"],
+          explanation: "Learn the first three Arabic letters with proper pronunciation. The AI Hujur will guide you step-by-step.",
+          detailed_instruction: "AI Hujur displays each letter and asks you to repeat. Voice recognition assesses pronunciation accuracy.",
+          interactive: {
+            type: "letter-recognition-advanced",
+            question: "Identify and pronounce the letter Alif (ا)",
+            voice_feedback: true,
+            ai_correction: true
+          },
+          gamification: {
+            stars_earned: 1,
+            badge: "First Letters Master",
+            xp_points: 10
+          }
+        },
+        audioUrls: {},
+        order: 1,
+        difficulty: "beginner"
+      },
+      {
+        id: "noorani-v2-lesson-2", 
+        chapterId: "noorani-qaida-v2-chapter",
+        title: "Chapter 1.2 - Additional Letters (Tha, Jeem, Ha)",
+        titleBengali: "অধ্যায় ১.২ - অতিরিক্ত বর্ণ (সা, জিম, হা)",
+        content: {
+          lesson_type: "noorani_v2",
+          chapter: "Introduction to Arabic Letters",
+          letters: ["ث", "ج", "ح"],
+          transliterations: ["Thaa", "Jeem", "Haa"],
+          explanation: "Continue learning Arabic letters with Tha, Jeem, and Ha. Focus on correct pronunciation.",
+          detailed_instruction: "AI introduces new letters with sound examples. Practice each letter individually with voice feedback.",
+          interactive: {
+            type: "pronunciation-practice-advanced",
+            question: "Practice pronouncing Jeem (ج) correctly",
+            voice_feedback: true,
+            streak_tracking: true
+          },
+          gamification: {
+            stars_earned: 1,
+            badge: "Letter Explorer",
+            xp_points: 15
+          }
+        },
+        audioUrls: {},
+        order: 2,
+        difficulty: "beginner"
+      },
+      // Chapter 2: Short Vowels and Basic Combinations
+      {
+        id: "noorani-v2-lesson-3",
+        chapterId: "noorani-qaida-v2-chapter", 
+        title: "Chapter 2.1 - Short Vowels (Fatha, Kasra, Dhamma)",
+        titleBengali: "অধ্যায় ২.১ - সংক্ষিপ্ত স্বরবর্ণ (ফাতহা, কাসরা, দাম্মা)",
+        content: {
+          lesson_type: "noorani_v2",
+          chapter: "Short Vowels and Basic Combinations",
+          vowels: ["ـَ", "ـِ", "ـُ"],
+          vowel_names: ["Fatha", "Kasra", "Dhamma"],
+          explanation: "Learn how short vowels modify letter sounds. Essential for correct pronunciation.",
+          examples: ["بَ", "بِ", "بُ"],
+          example_sounds: ["Ba", "Bi", "Bu"],
+          detailed_instruction: "AI shows vowel markings and demonstrates how they change letter pronunciation.",
+          interactive: {
+            type: "vowel-recognition",
+            question: "Identify the vowel marking in بَ",
+            options: ["Fatha", "Kasra", "Dhamma"],
+            correct: "Fatha"
+          },
+          gamification: {
+            stars_earned: 2,
+            xp_points: 20
+          }
+        },
+        audioUrls: {},
+        order: 3,
+        difficulty: "beginner"
+      },
+      {
+        id: "noorani-v2-lesson-4",
+        chapterId: "noorani-qaida-v2-chapter",
+        title: "Chapter 2.2 - Letter Combinations Practice",
+        titleBengali: "অধ্যায় ২.২ - বর্ণ সমন্বয় অনুশীলন",
+        content: {
+          lesson_type: "noorani_v2",
+          chapter: "Short Vowels and Basic Combinations",
+          combinations: ["بَاب", "تِجَارَة"],
+          meanings: ["Door", "Trade"],
+          explanation: "Practice combining letters with vowels to form simple words.",
+          detailed_instruction: "Interactive quiz where AI gives combinations and you match sounds to written words.",
+          interactive: {
+            type: "word-matching",
+            question: "Match the sound to the written word: بَاب",
+            voice_input: true,
+            ai_evaluation: true
+          },
+          gamification: {
+            stars_earned: 2,
+            xp_points: 25
+          }
+        },
+        audioUrls: {},
+        order: 4,
+        difficulty: "beginner"
+      },
+      // Chapter 3: Complex Letter Combinations  
+      {
+        id: "noorani-v2-lesson-5",
+        chapterId: "noorani-qaida-v2-chapter",
+        title: "Chapter 3.1 - Advanced Letter Combinations",
+        titleBengali: "অধ্যায় ৩.১ - উন্নত বর্ণ সমন্বয়",
+        content: {
+          lesson_type: "noorani_v2",
+          chapter: "Complex Letter Combinations", 
+          combinations: ["بَاب", "فَاتِحَة"],
+          meanings: ["Door", "Opening"],
+          explanation: "Master complex letter combinations with step-by-step breakdown.",
+          detailed_instruction: "AI breaks down each combination, listens to pronunciation with voice recognition.",
+          interactive: {
+            type: "combination-breakdown",
+            question: "Break down and pronounce: فَاتِحَة",
+            hint_system: true,
+            correction_feedback: "Focus on the 'A' sound"
+          },
+          gamification: {
+            stars_earned: 3,
+            xp_points: 30
+          }
+        },
+        audioUrls: {},
+        order: 5,
+        difficulty: "intermediate"
+      },
+      {
+        id: "noorani-v2-lesson-6",
+        chapterId: "noorani-qaida-v2-chapter",
+        title: "Chapter 3.2 - Longer Word Practice",
+        titleBengali: "অধ্যায় ৩.২ - দীর্ঘ শব্দ অনুশীলন",
+        content: {
+          lesson_type: "noorani_v2",
+          chapter: "Complex Letter Combinations",
+          long_words: ["مَكْتَبَة", "مَدْرَسَة"],
+          meanings: ["Library", "School"],
+          explanation: "Read and pronounce longer Arabic words by breaking them into segments.",
+          detailed_instruction: "AI displays longer words, child breaks them down into smaller segments for pronunciation.",
+          interactive: {
+            type: "word-segmentation",
+            question: "Break down مَكْتَبَة into syllables",
+            segment_practice: true
+          },
+          gamification: {
+            stars_earned: 3,
+            xp_points: 35
+          }
+        },
+        audioUrls: {},
+        order: 6,
+        difficulty: "intermediate"
+      },
+      // Chapter 4: Basic Arabic Words and Sentences
+      {
+        id: "noorani-v2-lesson-7",
+        chapterId: "noorani-qaida-v2-chapter",
+        title: "Chapter 4.1 - Essential Arabic Words",
+        titleBengali: "অধ্যায় ৪.১ - অত্যাবশ্যকীয় আরবি শব্দ",
+        content: {
+          lesson_type: "noorani_v2",
+          chapter: "Basic Arabic Words and Sentences",
+          essential_words: ["الله", "رَحْمَة", "بِسْمِ"],
+          meanings: ["Allah", "Mercy", "In the name of"],
+          explanation: "Learn fundamental Arabic words used in Quran and daily prayers.",
+          detailed_instruction: "AI introduces basic words with meanings, child repeats with voice evaluation.",
+          interactive: {
+            type: "word-meaning-match",
+            question: "What does الله mean?",
+            options: ["Allah", "Mercy", "Peace"],
+            correct: "Allah"
+          },
+          gamification: {
+            stars_earned: 2,
+            badge: "Word Scholar",
+            xp_points: 25
+          }
+        },
+        audioUrls: {},
+        order: 7,
+        difficulty: "beginner"
+      },
+      {
+        id: "noorani-v2-lesson-8",
+        chapterId: "noorani-qaida-v2-chapter",
+        title: "Chapter 4.2 - Introduction to Duas",
+        titleBengali: "অধ্যায় ৪.২ - দোয়ার পরিচয়",
+        content: {
+          lesson_type: "noorani_v2",
+          chapter: "Basic Arabic Words and Sentences",
+          duas: [
+            { arabic: "بِسْمِ اللهِ", transliteration: "Bismillah", meaning: "In the name of Allah" },
+            { arabic: "الحَمْدُ لِلهِ", transliteration: "Alhamdulillah", meaning: "Praise be to Allah" }
+          ],
+          explanation: "Learn basic Duas used in daily life with proper pronunciation.",
+          detailed_instruction: "AI asks child to repeat Duas, provides hints and corrections for proper recitation.",
+          interactive: {
+            type: "dua-recitation",
+            question: "Recite Bismillah correctly",
+            voice_recognition: true,
+            pronunciation_help: true
+          },
+          gamification: {
+            stars_earned: 3,
+            badge: "Dua Beginner",
+            xp_points: 40
+          }
+        },
+        audioUrls: {},
+        order: 8,
+        difficulty: "beginner"
+      },
+      // Chapter 5: Introduction to Tajweed
+      {
+        id: "noorani-v2-lesson-9",
+        chapterId: "noorani-qaida-v2-chapter",
+        title: "Chapter 5.1 - What is Tajweed?",
+        titleBengali: "অধ্যায় ৫.১ - তাজবিদ কী?",
+        content: {
+          lesson_type: "noorani_v2",
+          chapter: "Introduction to Tajweed",
+          tajweed_concept: "Beautiful recitation of the Quran with proper rules",
+          importance: "Essential for correct Quranic pronunciation",
+          basic_rules: ["Qalqalah", "Ikhfaa", "Ghunna"],
+          explanation: "Introduction to Tajweed and its importance in Quranic recitation.",
+          detailed_instruction: "AI explains Tajweed concept, child practices basic pronunciation exercises.",
+          interactive: {
+            type: "tajweed-introduction",
+            question: "Why is Tajweed important?",
+            educational: true
+          },
+          gamification: {
+            stars_earned: 2,
+            badge: "Tajweed Explorer",
+            xp_points: 30
+          }
+        },
+        audioUrls: {},
+        order: 9,
+        difficulty: "intermediate"
+      },
+      {
+        id: "noorani-v2-lesson-10",
+        chapterId: "noorani-qaida-v2-chapter",
+        title: "Chapter 5.2 - Practical Tajweed (Qalqalah)",
+        titleBengali: "অধ্যায় ৫.২ - ব্যবহারিক তাজবিদ (কালকালাহ)",
+        content: {
+          lesson_type: "noorani_v2",
+          chapter: "Introduction to Tajweed",
+          qalqalah_letters: ["ق", "ط", "ب", "ج", "د"],
+          rule_explanation: "Bouncing sound when these letters have sukoon",
+          examples: ["مِنْ قَبْلُ", "يُحِبُّ"],
+          explanation: "Learn Qalqalah rule - the bouncing sound for specific letters.",
+          detailed_instruction: "AI demonstrates Qalqalah with examples, child practices with voice feedback.",
+          interactive: {
+            type: "tajweed-practice",
+            question: "Practice Qalqalah in: مِنْ قَبْلُ",
+            voice_analysis: true,
+            improvement_tracking: true
+          },
+          gamification: {
+            stars_earned: 4,
+            badge: "Tajweed Practitioner", 
+            xp_points: 50
+          }
+        },
+        audioUrls: {},
+        order: 10,
+        difficulty: "intermediate"
+      },
+      // Chapter 6: Quranic Surahs and Duas
+      {
+        id: "noorani-v2-lesson-11",
+        chapterId: "noorani-qaida-v2-chapter",
+        title: "Chapter 6.1 - Surah Al-Fatiha (Part 1)",
+        titleBengali: "অধ্যায় ৬.১ - সূরা আল-ফাতিহা (১ম অংশ)",
+        content: {
+          lesson_type: "noorani_v2",
+          chapter: "Quranic Surahs and Duas",
+          surah: "Al-Fatiha",
+          verses: [
+            { arabic: "بِسْمِ اللهِ الرَّحْمَنِ الرَّحِيمِ", transliteration: "Bismillah ir-Rahman ir-Raheem" },
+            { arabic: "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ", transliteration: "Alhamdu lillahi rabbil alameen" }
+          ],
+          explanation: "Learn the opening chapter of the Quran with correct Tajweed and pronunciation.",
+          detailed_instruction: "AI breaks down Al-Fatiha into parts, child repeats with real-time corrections.",
+          interactive: {
+            type: "surah-recitation",
+            question: "Recite the first two verses of Al-Fatiha",
+            tajweed_focus: true,
+            progress_tracking: true
+          },
+          gamification: {
+            stars_earned: 5,
+            badge: "Al-Fatiha Beginner",
+            xp_points: 60
+          }
+        },
+        audioUrls: {},
+        order: 11,
+        difficulty: "intermediate"
+      },
+      {
+        id: "noorani-v2-lesson-12",
+        chapterId: "noorani-qaida-v2-chapter", 
+        title: "Chapter 6.2 - Surah Al-Fatiha (Part 2)",
+        titleBengali: "অধ্যায় ৬.২ - সূরা আল-ফাতিহা (২য় অংশ)",
+        content: {
+          lesson_type: "noorani_v2",
+          chapter: "Quranic Surahs and Duas",
+          surah: "Al-Fatiha",
+          verses: [
+            { arabic: "الرَّحْمَنِ الرَّحِيمِ", transliteration: "Ar-Rahman ir-Raheem" },
+            { arabic: "مَالِكِ يَوْمِ الدِّينِ", transliteration: "Maliki yawm id-deen" }
+          ],
+          explanation: "Complete learning of Surah Al-Fatiha with advanced Tajweed rules.",
+          detailed_instruction: "AI helps child practice complete Al-Fatiha with real-time pronunciation feedback.",
+          interactive: {
+            type: "complete-surah-recitation",
+            question: "Recite complete Surah Al-Fatiha",
+            full_evaluation: true
+          },
+          gamification: {
+            stars_earned: 5,
+            badge: "Al-Fatiha Master",
+            xp_points: 70
+          }
+        },
+        audioUrls: {},
+        order: 12,
+        difficulty: "intermediate"
+      },
+      {
+        id: "noorani-v2-lesson-13",
+        chapterId: "noorani-qaida-v2-chapter",
+        title: "Chapter 6.3 - Surah Al-Ikhlas",
+        titleBengali: "অধ্যায় ৬.৩ - সূরা আল-ইখলাস",
+        content: {
+          lesson_type: "noorani_v2",
+          chapter: "Quranic Surahs and Duas",
+          surah: "Al-Ikhlas",
+          verses: [
+            { arabic: "قُلْ هُوَ اللَّهُ أَحَدٌ", transliteration: "Qul huwa Allahu ahad" },
+            { arabic: "اللَّهُ الصَّمَدُ", transliteration: "Allah us-Samad" }
+          ],
+          explanation: "Learn Surah Al-Ikhlas focusing on correct recitation with Tajweed rules.",
+          detailed_instruction: "AI teaches each verse with proper Tajweed, child practices with voice corrections.",
+          interactive: {
+            type: "surah-recitation-advanced",
+            question: "Recite Surah Al-Ikhlas with proper Tajweed",
+            tajweed_analysis: true
+          },
+          gamification: {
+            stars_earned: 4,
+            badge: "Surah Al-Ikhlas Master",
+            xp_points: 55
+          }
+        },
+        audioUrls: {},
+        order: 13,
+        difficulty: "intermediate"
+      },
+      // Chapter 7: Daily Duas and Short Invocations
+      {
+        id: "noorani-v2-lesson-14",
+        chapterId: "noorani-qaida-v2-chapter",
+        title: "Chapter 7.1 - Daily Duas (Morning & Evening)",
+        titleBengali: "অধ্যায় ৭.১ - দৈনিক দোয়া (সকাল ও সন্ধ্যা)",
+        content: {
+          lesson_type: "noorani_v2",
+          chapter: "Daily Duas and Short Invocations",
+          duas: [
+            {
+              arabic: "اللَّهُمَّ أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ",
+              transliteration: "Allahumma asbahna wa asbahal-mulku lillah",
+              meaning: "O Allah, we have reached the morning and all dominion belongs to Allah",
+              time: "Morning"
+            },
+            {
+              arabic: "اللَّهُمَّ أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ",
+              transliteration: "Allahumma amsayna wa amsal-mulku lillah", 
+              meaning: "O Allah, we have reached the evening and all dominion belongs to Allah",
+              time: "Evening"
+            }
+          ],
+          explanation: "Learn essential daily Duas for morning and evening remembrance.",
+          detailed_instruction: "AI presents each Dua, child repeats with instant pronunciation feedback and progress recording.",
+          interactive: {
+            type: "daily-dua-practice",
+            question: "Practice the morning Dua correctly",
+            context_learning: true,
+            usage_guidance: true
+          },
+          gamification: {
+            stars_earned: 3,
+            badge: "Daily Dhikr Practitioner",
+            xp_points: 45
+          }
+        },
+        audioUrls: {},
+        order: 14,
+        difficulty: "beginner"
+      },
+      {
+        id: "noorani-v2-lesson-15",
+        chapterId: "noorani-qaida-v2-chapter",
+        title: "Chapter 7.2 - Meal Time Duas",
+        titleBengali: "অধ্যায় ৭.২ - খাবারের সময়ের দোয়া",
+        content: {
+          lesson_type: "noorani_v2", 
+          chapter: "Daily Duas and Short Invocations",
+          duas: [
+            {
+              arabic: "بِسْمِ اللهِ وَعَلَى بَرَكَةِ اللهِ",
+              transliteration: "Bismillahi wa ala barakati Allah",
+              meaning: "In the name of Allah and with the blessings of Allah",
+              time: "Before eating"
+            },
+            {
+              arabic: "الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنَا وَسَقَانَا",
+              transliteration: "Alhamdu lillahi alladhi at'amana wa saqana",
+              meaning: "Praise be to Allah who fed us and gave us drink",
+              time: "After eating"
+            }
+          ],
+          explanation: "Learn proper etiquette and Duas for before and after meals.",
+          detailed_instruction: "AI teaches mealtime Duas with context, child can see daily/weekly practice progress.",
+          interactive: {
+            type: "contextual-dua-practice",
+            question: "When do you say this Dua: بِسْمِ اللهِ وَعَلَى بَرَكَةِ اللهِ",
+            practical_application: true
+          },
+          gamification: {
+            stars_earned: 3,
+            badge: "Mealtime Manner Master",
+            xp_points: 40
+          }
+        },
+        audioUrls: {},
+        order: 15,
+        difficulty: "beginner"
+      },
+      {
+        id: "noorani-v2-lesson-16",
+        chapterId: "noorani-qaida-v2-chapter",
+        title: "Chapter 7.3 - Sleep and Travel Duas",
+        titleBengali: "অধ্যায় ৭.৩ - ঘুম ও সফরের দোয়া",
+        content: {
+          lesson_type: "noorani_v2",
+          chapter: "Daily Duas and Short Invocations", 
+          duas: [
+            {
+              arabic: "اللَّهُمَّ بِاسْمِكَ أَمُوتُ وَأَحْيَا",
+              transliteration: "Allahumma bismika amutu wa ahya",
+              meaning: "O Allah, in Your name I die and I live",
+              time: "Before sleep"
+            },
+            {
+              arabic: "سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَٰذَا",
+              transliteration: "Subhanal ladhi sakhkhara lana hadha",
+              meaning: "Glory be to Him who has subjected this to us",
+              time: "When traveling"
+            }
+          ],
+          explanation: "Learn protective Duas for sleep and travel with proper understanding.",
+          detailed_instruction: "AI explains the importance and context of each Dua, tracks how well child has learned each one.",
+          interactive: {
+            type: "protective-dua-learning",
+            question: "Recite the travel Dua with understanding",
+            meaning_emphasis: true
+          },
+          gamification: {
+            stars_earned: 3,
+            badge: "Protection Seeker", 
+            xp_points: 45
+          }
+        },
+        audioUrls: {},
+        order: 16,
+        difficulty: "beginner"
+      },
+      // Advanced Integration Lessons
+      {
+        id: "noorani-v2-lesson-17",
+        chapterId: "noorani-qaida-v2-chapter",
+        title: "Advanced Practice - Letter Connection Mastery",
+        titleBengali: "উন্নত অনুশীলন - বর্ণ সংযোগ দক্ষতা",
+        content: {
+          lesson_type: "noorani_v2",
+          chapter: "Advanced Integration",
+          focus: "Letter connections in different positions",
+          connection_types: ["Initial", "Medial", "Final", "Isolated"],
+          practice_words: ["كِتَاب", "مَدْرَسَة", "طَالِب"],
+          explanation: "Master how Arabic letters connect in different positions within words.",
+          detailed_instruction: "Interactive exercises where child identifies letter positions and practices writing connections.",
+          interactive: {
+            type: "connection-mastery",
+            question: "Identify the position of ت in كِتَاب",
+            visual_learning: true
+          },
+          gamification: {
+            stars_earned: 4,
+            badge: "Connection Master",
+            xp_points: 55
+          }
+        },
+        audioUrls: {},
+        order: 17,
+        difficulty: "advanced"
+      },
+      {
+        id: "noorani-v2-lesson-18",
+        chapterId: "noorani-qaida-v2-chapter", 
+        title: "Reading Fluency - Short Verses",
+        titleBengali: "পড়ার সাবলীলতা - সংক্ষিপ্ত আয়াত",
+        content: {
+          lesson_type: "noorani_v2",
+          chapter: "Reading Fluency",
+          focus: "Smooth reading of Quranic verses",
+          practice_verses: [
+            "وَالْعَصْرِ",
+            "إِنَّ الْإِنسَانَ لَفِي خُسْرٍ",
+            "إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ"
+          ],
+          explanation: "Develop fluency in reading Quranic text with proper pace and pronunciation.",
+          detailed_instruction: "AI provides real-time feedback on reading speed, accuracy, and Tajweed application.",
+          interactive: {
+            type: "fluency-assessment",
+            question: "Read this verse smoothly: وَالْعَصْرِ",
+            speed_tracking: true,
+            fluency_scoring: true
+          },
+          gamification: {
+            stars_earned: 5,
+            badge: "Fluent Reader",
+            xp_points: 65
+          }
+        },
+        audioUrls: {},
+        order: 18,
+        difficulty: "advanced"
+      },
+      {
+        id: "noorani-v2-lesson-19",
+        chapterId: "noorani-qaida-v2-chapter",
+        title: "Comprehensive Review - All Skills",
+        titleBengali: "ব্যাপক পর্যালোচনা - সকল দক্ষতা",
+        content: {
+          lesson_type: "noorani_v2",
+          chapter: "Comprehensive Review",
+          review_areas: [
+            "Letter recognition",
+            "Vowel application", 
+            "Word formation",
+            "Tajweed basics",
+            "Surah recitation",
+            "Daily Duas"
+          ],
+          explanation: "Comprehensive review of all skills learned throughout the course.",
+          detailed_instruction: "Mixed exercises testing all learned skills with AI providing overall progress assessment.",
+          interactive: {
+            type: "comprehensive-assessment",
+            question: "Demonstrate your mastery across all areas",
+            skill_evaluation: true,
+            progress_report: true
+          },
+          gamification: {
+            stars_earned: 6,
+            badge: "Noorani Qaida Graduate",
+            xp_points: 80
+          }
+        },
+        audioUrls: {},
+        order: 19,
+        difficulty: "advanced"
+      },
+      {
+        id: "noorani-v2-lesson-20",
+        chapterId: "noorani-qaida-v2-chapter",
+        title: "Graduation & Next Steps",
+        titleBengali: "স্নাতক ও পরবর্তী পদক্ষেপ",
+        content: {
+          lesson_type: "noorani_v2",
+          chapter: "Graduation",
+          achievement: "Completed comprehensive Noorani Qaida curriculum",
+          skills_mastered: [
+            "Arabic alphabet recognition and pronunciation",
+            "Short vowel application",
+            "Basic Tajweed rules",
+            "Surah Al-Fatiha and Al-Ikhlas",
+            "Essential daily Duas",
+            "Reading fluency foundations"
+          ],
+          next_recommendations: [
+            "Advanced Tajweed course",
+            "Quran memorization program", 
+            "Islamic studies continuation"
+          ],
+          explanation: "Celebrate your achievement and plan your continued Islamic learning journey.",
+          detailed_instruction: "AI congratulates progress and provides personalized recommendations for next learning steps.",
+          interactive: {
+            type: "graduation-ceremony",
+            question: "What would you like to learn next?",
+            path_planning: true
+          },
+          gamification: {
+            stars_earned: 10,
+            badge: "Noorani Qaida Master Graduate",
+            xp_points: 100,
+            special_certificate: true
+          }
+        },
+        audioUrls: {},
+        order: 20,
+        difficulty: "completion"
+      }
+    ];
+
     nooraniLessons.forEach(lesson => this.lessons.set(lesson.id, lesson));
+    nooraniV2Lessons.forEach(lesson => this.lessons.set(lesson.id, lesson));
     amparaLessons.forEach(lesson => this.lessons.set(lesson.id, lesson));
     quranLessons.forEach(lesson => this.lessons.set(lesson.id, lesson));
     numbersLessons.forEach(lesson => this.lessons.set(lesson.id, lesson));

@@ -192,6 +192,20 @@ export default function Home() {
                       </div>
                     </div>
                   </Link>
+                  <Link href="/chapter/noorani-qaida-v2-chapter">
+                    <div className="p-5 bg-emerald-600 text-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer h-32 flex flex-col justify-between">
+                      <div>
+                        <div className="flex justify-between items-center mb-2">
+                          <h5 className="text-lg font-semibold">Noorani Qaida V2</h5>
+                          <span className="text-sm bg-white bg-opacity-20 px-2 py-1 rounded">0%</span>
+                        </div>
+                        <p className="text-sm opacity-90">Duolingo-style comprehensive learning</p>
+                      </div>
+                      <div className="bg-white bg-opacity-20 rounded-full h-2">
+                        <div className="bg-white h-2 rounded-full" style={{ width: '0%' }}></div>
+                      </div>
+                    </div>
+                  </Link>
                   <Link href="/chapter/ampara-chapter">
                     <div className="p-5 bg-islamic-green text-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer h-32 flex flex-col justify-between">
                       <div>

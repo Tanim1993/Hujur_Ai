@@ -6,6 +6,13 @@ Hujur is an interactive Islamic learning platform featuring an AI teacher that g
 
 ## Recent Changes (August 2025)
 
+- **Noorani Qaida Version 2 Learning Module**: Implemented comprehensive 20-lesson Duolingo-style Arabic curriculum
+  - **7 Complete Chapters**: Introduction to Arabic Letters, Short Vowels, Complex Combinations, Basic Words, Tajweed Introduction, Quranic Surahs, and Daily Duas
+  - **Progressive Difficulty**: Beginner to advanced levels with step-by-step skill building
+  - **Interactive AI Feedback**: Voice recognition, pronunciation correction, and real-time guidance
+  - **Gamification Elements**: Stars, badges, XP points, and achievement tracking system
+  - **Traditional Integration**: Surah Al-Fatiha, Al-Ikhlas, and essential daily Duas with Tajweed rules
+  - **Comprehensive Graduation**: 20th lesson includes certificate and next learning path recommendations
 - **Ampara Learning Module**: Added comprehensive 30 Para (Juz) chapter for structured Quran reading
   - **30 Traditional Sections**: Complete Quran divided into daily reading portions following Islamic tradition
   - **Progressive Learning**: From Al-Fatiha through all major Surahs with verse-by-verse guidance
@@ -27,7 +34,7 @@ Hujur is an interactive Islamic learning platform featuring an AI teacher that g
 - **Expanded Beginner Content**: Added Arabic Numbers and Islamic Greetings chapters for comprehensive beginner learning
 - **Text-to-Speech Audio**: Replaced missing audio files with browser Speech Synthesis API for immediate audio functionality
 - **Realistic 3D AI Teacher**: Enhanced character design with professional, 3D-style appearance and interactive animations
-- **6 Complete Learning Chapters**: Noorani Qaida (5 lessons), Ampara 30 Para (30 lessons), Quran (5 lessons), Arabic Numbers (10 lessons), Islamic Greetings (5 lessons), Salah (10 lessons), and Dua (8 lessons)
+- **7 Complete Learning Chapters**: Noorani Qaida (5 lessons), Noorani Qaida V2 (20 lessons), Ampara 30 Para (30 lessons), Quran (5 lessons), Arabic Numbers (10 lessons), Islamic Greetings (5 lessons), Salah (10 lessons), and Dua (8 lessons)
 
 ## User Preferences
 

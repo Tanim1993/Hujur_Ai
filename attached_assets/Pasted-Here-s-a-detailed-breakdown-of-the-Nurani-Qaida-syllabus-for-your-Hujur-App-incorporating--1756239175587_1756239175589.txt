@@ -1,0 +1,187 @@
+Here's a **detailed, breakdown of the Nurani Qaida syllabus** for your **Hujur App**, incorporating a **Duolingo-style** user journey. Each lesson will be divided into **bite-sized chunks**, making it easy for children to progress step by step. We'll also structure the flow for each lesson, explaining the **user journey** and **use cases**.
+
+---
+
+### **Nurani Qaida Detailed Breakdown with Duolingo-style User Journey**
+
+---
+
+### **Chapter 1: Introduction to Arabic Letters**
+
+#### **Lesson 1.1 - Introduction to Arabic Script**
+
+* **Learning Objective**: Teach the child to recognize and pronounce the first few Arabic letters: **ا (Alif), ب (Baa), ت (Taa)**.
+* **User Journey**:
+
+  * **Introduction**: The child is greeted by the AI Hujur and introduced to Arabic letters.
+  * **Interactive Lesson**:
+
+    * AI Hujur displays **Alif** and asks the child to repeat.
+    * Once the child repeats, AI Hujur confirms with **“Correct! Let’s move to the next one!”**.
+  * **Practice Mode**:
+
+    * Child clicks or taps on **Alif**, **Baa**, and **Taa** to listen to their pronunciation and practice repeating them.
+    * Use **voice recognition** to assess if the pronunciation is correct. If wrong, the AI will provide **feedback**: “Try again. Make sure your lips are more round for **Baa**.”
+  * **Reward**: Child earns **1 star** for completing the lesson, and **a badge** for completing the first letter.
+
+#### **Lesson 1.2 - Learning Additional Letters**
+
+* **Learning Objective**: Introduce more Arabic letters: **ث (Thaa), ج (Jeem), ح (Haa)**.
+* **User Journey**:
+
+  * **Interactive Lesson**:
+
+    * AI Hujur introduces the new letters and their sounds.
+    * AI shows each letter and its corresponding pronunciation, asking the child to repeat.
+  * **Practice Mode**:
+
+    * Child taps the letters on screen to hear the sound and practice.
+    * The AI will correct and reward after each attempt.
+  * **Gamification**: Each correct letter adds to a streak, **encouraging consistent practice**. The child earns a **badge** for correct pronunciation.
+
+---
+
+### **Chapter 2: Short Vowels and Basic Combinations**
+
+#### **Lesson 2.1 - Short Vowels: Fatha, Kasra, Dhamma**
+
+* **Learning Objective**: Introduce **Fatha** (ـَ), **Kasra** (ـِ), and **Dhamma** (ـُ) to modify sounds of letters.
+* **User Journey**:
+
+  * **Explanation**: The AI Hujur explains short vowels and shows examples with **ب (Baa)**, **ت (Taa)**, and **ج (Jeem)**.
+  * **Interactive Lesson**:
+
+    * AI shows **بَ** (Ba with Fatha), **بِ** (Ba with Kasra), **بُ** (Ba with Dhamma).
+    * Child taps each combination and repeats.
+  * **Gamification**: Child gets points for every correct answer, adding to their **level**.
+  * **Hint/Feedback**: If the child says a wrong vowel sound, AI will say, “Try again. You missed the short vowel.”
+
+#### **Lesson 2.2 - Practice Letter Combinations**
+
+* **Learning Objective**: Combine letters with short vowels.
+* **User Journey**:
+
+  * **Interactive Quiz**: AI will give the child combinations like **بَاب** (Baab) and **تِجَارَة** (Tijarah).
+  * **Practice Mode**: The child will be asked to match the correct sound with the written word.
+  * **Voice Feedback**: AI evaluates if the word is pronounced correctly and gives feedback.
+  * **Gamification**: **Correct answers** reward stars and progress towards the next level.
+
+---
+
+### **Chapter 3: Complex Letter Combinations**
+
+#### **Lesson 3.1 - Letter Combination Practice**
+
+* **Learning Objective**: Teach combinations like **بَاب** (Baab) and **فَاتِحَة** (Fatiha).
+* **User Journey**:
+
+  * **Step-by-step Lessons**: AI Hujur breaks down each combination.
+  * **Interactive Practice**: The child is shown combinations and asked to repeat.
+  * **AI Evaluation**: AI listens to the pronunciation using voice recognition and provides corrective feedback.
+  * **Feedback Loop**: If wrong, AI gives a hint: “Focus on the **A** sound. Try again.”
+  * **Reward**: Child earns **XP points** for completing each combination correctly.
+
+#### **Lesson 3.2 - Practice with Longer Words**
+
+* **Learning Objective**: Read and pronounce longer words.
+* **User Journey**:
+
+  * **Interactive Practice**: AI will display longer words like **مكتبة** (Maktabah), and the child must break them down and pronounce them.
+  * **Feedback and Rewards**: The child earns points for breaking down the word into smaller segments and gets stars for correct pronunciation.
+
+---
+
+### **Chapter 4: Basic Arabic Words and Sentences**
+
+#### **Lesson 4.1 - Simple Words and Phrases**
+
+* **Learning Objective**: Learn simple words from the Quran or everyday use, like **الله** (Allah), **رَحْمَة** (Rahmah).
+* **User Journey**:
+
+  * **Explanation**: AI introduces basic words and their meanings.
+  * **Practice Mode**: AI prompts the child to repeat after it.
+  * **Voice Evaluation**: AI listens to the child’s response and provides feedback (e.g., “Correct!” or “Try again”).
+  * **Contextual Examples**: AI introduces words used in **Duas** like **الحمد لله** (Alhamdulillah), showing how these words are used in practice.
+
+#### **Lesson 4.2 - Introduction to Duas**
+
+* **Learning Objective**: Learn basic Duas such as **Bismillah**, **Dua before eating**, **Dua before sleeping**.
+* **User Journey**:
+
+  * **Interactive Mode**: AI asks the child to repeat Duas.
+  * **AI Assistance**: If the child hesitates or gets a Dua wrong, AI will give a hint or show the correct pronunciation.
+  * **Practice Mode**: Child can practice each Dua, getting real-time AI feedback.
+  * **Reward**: Stars for mastering each Dua.
+
+---
+
+### **Chapter 5: Introduction to Tajweed (Pronunciation Rules)**
+
+#### **Lesson 5.1 - What is Tajweed?**
+
+* **Learning Objective**: Introduction to **Tajweed** and its importance in Quranic recitation.
+* **User Journey**:
+
+  * **AI Explanation**: AI introduces the concept of Tajweed and why it’s important.
+  * **Pronunciation Exercises**: The child practices **Qalqalah**, **Ikhfaa**, **Ghunna**.
+  * **Real-Time Feedback**: AI listens to the child’s pronunciation and provides feedback.
+
+#### **Lesson 5.2 - Practical Tajweed**
+
+* **Learning Objective**: Learn specific rules like **Qalqalah** (bouncing sound).
+* **User Journey**:
+
+  * **Interactive Mode**: Child practices with words that contain **Qalqalah**.
+  * **Feedback**: AI provides hints for correct pronunciation.
+  * **Progress Tracking**: Child can see **improvement stats** after each lesson.
+
+---
+
+### **Chapter 6: Quranic Surahs and Duas**
+
+#### **Lesson 6.1 - Surah Al-Fatiha**
+
+* **Learning Objective**: Learn Surah Al-Fatiha, with a focus on **correct pronunciation** and **Tajweed**.
+* **User Journey**:
+
+  * **Interactive Lesson**: AI breaks down the Surah into smaller parts for the child to repeat.
+  * **Progress Tracker**: AI tracks how well the child is doing, providing feedback.
+  * **Practice**: AI helps the child practice the Surah with **real-time corrections**.
+
+#### **Lesson 6.2 - Surah Al-Ikhlas**
+
+* **Learning Objective**: Teach Surah Al-Ikhlas, focusing on correct recitation with **Tajweed** rules.
+* **User Journey**:
+
+  * **Practice Mode**: Child listens and repeats each verse.
+  * **Real-Time Feedback**: AI corrects pronunciation and suggests improvements.
+
+---
+
+### **Chapter 7: Daily Duas and Short Invocations**
+
+#### **Lesson 7.1 - Learning Daily Duas**
+
+* **Learning Objective**: Teach basic daily Duas like **Dua before eating**, **Dua before sleeping**.
+* **User Journey**:
+
+  * **Dua Practice**: AI presents a Dua, and the child repeats.
+  * **Feedback**: AI provides instant feedback on pronunciation.
+  * **Recording Progress**: The child can see how well they’ve learned each Dua and how many times they’ve practiced it.
+
+---
+
+### **User Journey Example for Each Lesson:**
+
+1. **Introduction**: The child is greeted by the **AI Hujur** and introduced to the lesson.
+2. **Lesson Flow**:
+
+   * AI presents new content (letters, words, Duas).
+   * The child repeats after AI, either **visually** (writing/typing) or **verbally** (through voice input).
+   * **Instant feedback** is given, with AI providing hints and corrections.
+3. **Gamification**: After completing a set of tasks, the child earns **XP points** or **badges**. For example, completing the Surah Al-Fatiha lesson may reward the child with a **"Surah Master" badge**.
+4. **Progress Tracking**: The child can see their **daily/weekly progress**, how many lessons they've completed, and where they need to improve.
+
+---
+
+This **detailed breakdown** and **user journey** approach ensures that children progress step-by-step, building their knowledge while receiving **interactive feedback** to reinforce correct learning. The app will maintain engagement through **gamification**, **voice recognition**, and **AI-powered assistance**, allowing kids to feel confident in their recitations and Duas.
