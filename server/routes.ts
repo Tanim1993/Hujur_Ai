@@ -139,6 +139,128 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Analytics endpoints
+  app.get("/api/users/:userId/analytics", async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const analytics = await storage.getUserAnalytics(userId);
+      res.json(analytics);
+    } catch (error) {
+      console.error("Analytics error:", error);
+      res.status(500).json({ message: "Failed to fetch analytics" });
+    }
+  });
+
+  app.get("/api/users/:userId/weekly-progress", async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const weeklyProgress = await storage.getWeeklyProgress(userId);
+      res.json(weeklyProgress);
+    } catch (error) {
+      console.error("Weekly progress error:", error);
+      res.status(500).json({ message: "Failed to fetch weekly progress" });
+    }
+  });
+
+  // Learning sessions
+  app.post("/api/users/:userId/learning-sessions", async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const sessionData = { ...req.body, userId };
+      const session = await storage.createLearningSession(sessionData);
+      res.status(201).json(session);
+    } catch (error) {
+      console.error("Create session error:", error);
+      res.status(500).json({ message: "Failed to create learning session" });
+    }
+  });
+
+  app.patch("/api/learning-sessions/:sessionId", async (req, res) => {
+    try {
+      const { sessionId } = req.params;
+      const updates = req.body;
+      const session = await storage.updateLearningSession(sessionId, updates);
+      
+      if (!session) {
+        return res.status(404).json({ message: "Session not found" });
+      }
+      
+      res.json(session);
+    } catch (error) {
+      console.error("Update session error:", error);
+      res.status(500).json({ message: "Failed to update learning session" });
+    }
+  });
+
+  app.get("/api/users/:userId/learning-sessions", async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const limit = req.query.limit ? parseInt(req.query.limit as string) : 50;
+      const sessions = await storage.getUserLearningSessions(userId, limit);
+      res.json(sessions);
+    } catch (error) {
+      console.error("Get sessions error:", error);
+      res.status(500).json({ message: "Failed to fetch learning sessions" });
+    }
+  });
+
+  // Achievements
+  app.get("/api/achievements", async (req, res) => {
+    try {
+      const achievements = await storage.getAllAchievements();
+      res.json(achievements);
+    } catch (error) {
+      console.error("Get achievements error:", error);
+      res.status(500).json({ message: "Failed to fetch achievements" });
+    }
+  });
+
+  app.get("/api/users/:userId/achievements", async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const achievements = await storage.getUserAchievements(userId);
+      res.json(achievements);
+    } catch (error) {
+      console.error("Get user achievements error:", error);
+      res.status(500).json({ message: "Failed to fetch user achievements" });
+    }
+  });
+
+  app.post("/api/users/:userId/check-achievements", async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const newAchievements = await storage.checkAndUnlockAchievements(userId);
+      res.json(newAchievements);
+    } catch (error) {
+      console.error("Check achievements error:", error);
+      res.status(500).json({ message: "Failed to check achievements" });
+    }
+  });
+
+  // Streak tracking
+  app.post("/api/users/:userId/update-streak", async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const user = await storage.updateUserStreak(userId);
+      res.json(user);
+    } catch (error) {
+      console.error("Update streak error:", error);
+      res.status(500).json({ message: "Failed to update streak" });
+    }
+  });
+
+  app.get("/api/users/:userId/streak-history", async (req, res) => {
+    try {
+      const { userId } = req.params;
+      const days = req.query.days ? parseInt(req.query.days as string) : 30;
+      const history = await storage.getUserStreakHistory(userId, days);
+      res.json(history);
+    } catch (error) {
+      console.error("Get streak history error:", error);
+      res.status(500).json({ message: "Failed to fetch streak history" });
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

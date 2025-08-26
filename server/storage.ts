@@ -1,12 +1,22 @@
 import { 
   type User, 
-  type InsertUser, 
+  type InsertUser,
+  type UpdateUser,
   type Chapter, 
   type InsertChapter,
   type Lesson, 
   type InsertLesson,
   type UserProgress,
-  type InsertUserProgress
+  type InsertUserProgress,
+  type LearningSession,
+  type InsertLearningSession,
+  type Achievement,
+  type InsertAchievement,
+  type UserAchievement,
+  type InsertUserAchievement,
+  type StreakHistory,
+  type InsertStreakHistory,
+  type UserAnalytics
 } from "@shared/schema";
 import { randomUUID } from "crypto";
 
@@ -15,7 +25,7 @@ export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
-  updateUser(id: string, updates: Partial<User>): Promise<User | undefined>;
+  updateUser(id: string, updates: UpdateUser): Promise<User | undefined>;
 
   // Chapter methods
   getAllChapters(): Promise<Chapter[]>;
@@ -35,6 +45,27 @@ export interface IStorage {
   
   // Chapter unlock methods
   getUnlockedChapters(userId: string): Promise<Chapter[]>;
+
+  // Learning Sessions
+  createLearningSession(session: InsertLearningSession): Promise<LearningSession>;
+  updateLearningSession(sessionId: string, updates: Partial<LearningSession>): Promise<LearningSession | undefined>;
+  getUserLearningSessions(userId: string, limit?: number): Promise<LearningSession[]>;
+
+  // Achievements
+  getAllAchievements(): Promise<Achievement[]>;
+  createAchievement(achievement: InsertAchievement): Promise<Achievement>;
+  getUserAchievements(userId: string): Promise<UserAchievement[]>;
+  unlockAchievement(userId: string, achievementId: string): Promise<UserAchievement>;
+  checkAndUnlockAchievements(userId: string): Promise<UserAchievement[]>;
+
+  // Streak tracking
+  updateStreakHistory(userId: string, data: InsertStreakHistory): Promise<StreakHistory>;
+  getUserStreakHistory(userId: string, days?: number): Promise<StreakHistory[]>;
+  updateUserStreak(userId: string): Promise<User | undefined>;
+
+  // Analytics
+  getUserAnalytics(userId: string): Promise<UserAnalytics>;
+  getWeeklyProgress(userId: string): Promise<{ date: string; lessonsCompleted: number; timeSpent: number }[]>;
 }
 
 export class MemStorage implements IStorage {
@@ -42,12 +73,20 @@ export class MemStorage implements IStorage {
   private chapters: Map<string, Chapter>;
   private lessons: Map<string, Lesson>;
   private userProgress: Map<string, UserProgress>;
+  private learningSessions: Map<string, LearningSession>;
+  private achievements: Map<string, Achievement>;
+  private userAchievements: Map<string, UserAchievement>;
+  private streakHistory: Map<string, StreakHistory>;
 
   constructor() {
     this.users = new Map();
     this.chapters = new Map();
     this.lessons = new Map();
     this.userProgress = new Map();
+    this.learningSessions = new Map();
+    this.achievements = new Map();
+    this.userAchievements = new Map();
+    this.streakHistory = new Map();
     this.initializeData();
   }
 
@@ -499,11 +538,18 @@ export class MemStorage implements IStorage {
     const defaultUser: User = {
       id: "default-user",
       username: "student",
+      email: null,
+      firstName: null,
+      lastName: null,
       language: "en",
       overallProgress: 25,
       streak: 7,
+      totalLessonsCompleted: 3,
+      totalTimeSpentMinutes: 45,
       achievements: ["first-lesson", "seven-day-streak", "perfect-score"],
+      lastActiveAt: new Date(),
       createdAt: new Date(),
+      updatedAt: new Date(),
     };
     this.users.set(defaultUser.id, defaultUser);
   }
@@ -524,19 +570,23 @@ export class MemStorage implements IStorage {
       id, 
       language: insertUser.language || "en",
       overallProgress: 0, 
-      streak: 0, 
+      streak: 0,
+      totalLessonsCompleted: 0,
+      totalTimeSpentMinutes: 0,
       achievements: [],
-      createdAt: new Date()
+      lastActiveAt: new Date(),
+      createdAt: new Date(),
+      updatedAt: new Date()
     };
     this.users.set(id, user);
     return user;
   }
 
-  async updateUser(id: string, updates: Partial<User>): Promise<User | undefined> {
+  async updateUser(id: string, updates: UpdateUser): Promise<User | undefined> {
     const user = this.users.get(id);
     if (!user) return undefined;
     
-    const updatedUser = { ...user, ...updates };
+    const updatedUser = { ...user, ...updates, updatedAt: new Date() };
     this.users.set(id, updatedUser);
     return updatedUser;
   }
@@ -658,6 +708,288 @@ export class MemStorage implements IStorage {
     
     return unlockedChapters;
   }
+
+  // Learning Sessions
+  async createLearningSession(sessionData: InsertLearningSession): Promise<LearningSession> {
+    const id = randomUUID();
+    const session: LearningSession = {
+      ...sessionData,
+      id,
+      startedAt: new Date(),
+      endedAt: sessionData.endedAt || null,
+      durationMinutes: sessionData.durationMinutes || 0,
+      activitiesCompleted: sessionData.activitiesCompleted || 0,
+      score: sessionData.score || 0,
+      metadata: sessionData.metadata || {}
+    };
+    this.learningSessions.set(id, session);
+    return session;
+  }
+
+  async updateLearningSession(sessionId: string, updates: Partial<LearningSession>): Promise<LearningSession | undefined> {
+    const session = this.learningSessions.get(sessionId);
+    if (!session) return undefined;
+
+    const updatedSession = { ...session, ...updates };
+    this.learningSessions.set(sessionId, updatedSession);
+    return updatedSession;
+  }
+
+  async getUserLearningSessions(userId: string, limit: number = 50): Promise<LearningSession[]> {
+    return Array.from(this.learningSessions.values())
+      .filter(session => session.userId === userId)
+      .sort((a, b) => new Date(b.startedAt).getTime() - new Date(a.startedAt).getTime())
+      .slice(0, limit);
+  }
+
+  // Achievements
+  async getAllAchievements(): Promise<Achievement[]> {
+    return Array.from(this.achievements.values());
+  }
+
+  async createAchievement(achievementData: InsertAchievement): Promise<Achievement> {
+    const id = randomUUID();
+    const achievement: Achievement = {
+      ...achievementData,
+      id,
+      nameArabic: achievementData.nameArabic || null,
+      nameBengali: achievementData.nameBengali || null,
+      points: achievementData.points || 10,
+      isActive: achievementData.isActive !== false
+    };
+    this.achievements.set(id, achievement);
+    return achievement;
+  }
+
+  async getUserAchievements(userId: string): Promise<UserAchievement[]> {
+    return Array.from(this.userAchievements.values())
+      .filter(ua => ua.userId === userId);
+  }
+
+  async unlockAchievement(userId: string, achievementId: string): Promise<UserAchievement> {
+    const id = randomUUID();
+    const userAchievement: UserAchievement = {
+      id,
+      userId,
+      achievementId,
+      unlockedAt: new Date(),
+      progress: 0
+    };
+    this.userAchievements.set(id, userAchievement);
+    return userAchievement;
+  }
+
+  async checkAndUnlockAchievements(userId: string): Promise<UserAchievement[]> {
+    const user = await this.getUser(userId);
+    if (!user) return [];
+
+    const userProgress = await this.getUserProgress(userId);
+    const newAchievements: UserAchievement[] = [];
+
+    // Simple achievement logic examples
+    const completedLessons = userProgress.filter(p => p.completed).length;
+    
+    // First lesson achievement
+    if (completedLessons >= 1) {
+      const existing = await this.getUserAchievements(userId);
+      if (!existing.some(ua => ua.achievementId === "first-lesson")) {
+        const achievement = await this.unlockAchievement(userId, "first-lesson");
+        newAchievements.push(achievement);
+      }
+    }
+
+    return newAchievements;
+  }
+
+  // Streak tracking
+  async updateStreakHistory(userId: string, data: InsertStreakHistory): Promise<StreakHistory> {
+    const id = randomUUID();
+    const streakHistory: StreakHistory = {
+      ...data,
+      id,
+      date: data.date || new Date(),
+      lessonsCompleted: data.lessonsCompleted || 0,
+      timeSpentMinutes: data.timeSpentMinutes || 0,
+      isActive: data.isActive !== false
+    };
+    this.streakHistory.set(id, streakHistory);
+    return streakHistory;
+  }
+
+  async getUserStreakHistory(userId: string, days: number = 30): Promise<StreakHistory[]> {
+    const cutoffDate = new Date();
+    cutoffDate.setDate(cutoffDate.getDate() - days);
+
+    return Array.from(this.streakHistory.values())
+      .filter(sh => sh.userId === userId && new Date(sh.date) >= cutoffDate)
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  }
+
+  async updateUserStreak(userId: string): Promise<User | undefined> {
+    const user = await this.getUser(userId);
+    if (!user) return undefined;
+
+    const today = new Date();
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+
+    const recentHistory = await this.getUserStreakHistory(userId, 2);
+    const todayActivity = recentHistory.find(h => 
+      new Date(h.date).toDateString() === today.toDateString()
+    );
+    const yesterdayActivity = recentHistory.find(h => 
+      new Date(h.date).toDateString() === yesterday.toDateString()
+    );
+
+    let newStreak = user.streak;
+    if (todayActivity && todayActivity.lessonsCompleted > 0) {
+      if (yesterdayActivity && yesterdayActivity.lessonsCompleted > 0) {
+        newStreak = user.streak + 1;
+      } else {
+        newStreak = 1; // Reset streak if no activity yesterday
+      }
+    }
+
+    return this.updateUser(userId, { 
+      streak: newStreak,
+      lastActiveAt: new Date()
+    });
+  }
+
+  // Analytics
+  async getUserAnalytics(userId: string): Promise<UserAnalytics> {
+    const user = await this.getUser(userId);
+    const userProgress = await this.getUserProgress(userId);
+    const learningSessions = await this.getUserLearningSessions(userId, 10);
+    const achievements = await this.getUserAchievements(userId);
+    const streakHistory = await this.getUserStreakHistory(userId, 30);
+
+    const completedLessons = userProgress.filter(p => p.completed);
+    const averageScore = completedLessons.length > 0 
+      ? completedLessons.reduce((sum, p) => sum + (p.score || 0), 0) / completedLessons.length 
+      : 0;
+
+    const chaptersCompleted = Array.from(new Set(completedLessons.map(p => p.chapterId))).length;
+    
+    const longestStreak = streakHistory.reduce((max, h) => {
+      // Simple calculation - in real implementation, would calculate consecutive days
+      return Math.max(max, user?.streak || 0);
+    }, 0);
+
+    const weeklyProgress = await this.getWeeklyProgress(userId);
+
+    return {
+      totalTimeSpent: user?.totalTimeSpentMinutes || 0,
+      totalLessonsCompleted: user?.totalLessonsCompleted || 0,
+      currentStreak: user?.streak || 0,
+      longestStreak,
+      chaptersCompleted,
+      averageScore,
+      recentActivity: learningSessions,
+      achievementsEarned: achievements,
+      weeklyProgress
+    };
+  }
+
+  async getWeeklyProgress(userId: string): Promise<{ date: string; lessonsCompleted: number; timeSpent: number }[]> {
+    const streakHistory = await this.getUserStreakHistory(userId, 7);
+    const weeklyData: { date: string; lessonsCompleted: number; timeSpent: number }[] = [];
+
+    for (let i = 6; i >= 0; i--) {
+      const date = new Date();
+      date.setDate(date.getDate() - i);
+      const dateString = date.toISOString().split('T')[0];
+
+      const dayData = streakHistory.find(h => 
+        new Date(h.date).toISOString().split('T')[0] === dateString
+      );
+
+      weeklyData.push({
+        date: dateString,
+        lessonsCompleted: dayData?.lessonsCompleted || 0,
+        timeSpent: dayData?.timeSpentMinutes || 0
+      });
+    }
+
+    return weeklyData;
+  }
 }
 
 export const storage = new MemStorage();
+
+// Initialize sample data for analytics demonstration
+async function initializeSampleData() {
+  // Create default user if not exists
+  const userId = "default-user";
+  let user = await storage.getUser(userId);
+  
+  if (!user) {
+    user = await storage.createUser({
+      id: userId,
+      username: "Student",
+      email: "student@example.com",
+      preferredLanguage: "en",
+      streak: 5,
+      totalTimeSpentMinutes: 180,
+      totalLessonsCompleted: 8,
+      lastActiveAt: new Date()
+    });
+  }
+
+  // Add some sample achievements
+  try {
+    await storage.createAchievement({
+      id: "first-lesson",
+      name: "First Steps",
+      description: "Complete your first lesson",
+      category: "learning",
+      points: 10
+    });
+  } catch (e) {
+    // Achievement already exists
+  }
+
+  // Add sample progress data for different days
+  const today = new Date();
+  for (let i = 0; i < 7; i++) {
+    const date = new Date(today);
+    date.setDate(date.getDate() - i);
+    
+    try {
+      await storage.updateStreakHistory(userId, {
+        date,
+        lessonsCompleted: Math.floor(Math.random() * 3) + 1,
+        timeSpentMinutes: Math.floor(Math.random() * 60) + 15,
+        isActive: true
+      });
+    } catch (e) {
+      // Streak data might already exist
+    }
+  }
+
+  // Add some learning sessions
+  try {
+    for (let i = 0; i < 3; i++) {
+      const sessionDate = new Date(today);
+      sessionDate.setDate(sessionDate.getDate() - i);
+      
+      await storage.createLearningSession({
+        userId,
+        sessionType: "lesson",
+        startedAt: sessionDate,
+        endedAt: new Date(sessionDate.getTime() + 30 * 60000), // 30 minutes later
+        durationMinutes: 30,
+        activitiesCompleted: 2,
+        score: 85 + Math.floor(Math.random() * 15),
+        metadata: {}
+      });
+    }
+  } catch (e) {
+    // Sessions might already exist
+  }
+
+  console.log("Sample analytics data initialized");
+}
+
+// Initialize data when storage is created
+initializeSampleData().catch(console.error);
