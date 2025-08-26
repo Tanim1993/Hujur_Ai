@@ -77,7 +77,7 @@ export default function Home() {
                   </Button>
                   <Button 
                     variant="outline" 
-                    className="border-2 border-white text-white hover:bg-white hover:text-islamic-green px-6 py-3 text-base md:text-lg"
+                    className="border-2 border-white bg-transparent text-white hover:bg-white hover:text-islamic-green transition-all duration-300 px-6 py-3 text-base md:text-lg font-semibold"
                     asChild
                     data-testid="button-my-progress"
                   >
