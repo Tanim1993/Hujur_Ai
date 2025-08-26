@@ -156,16 +156,16 @@ export default function Home() {
         </section>
 
         {/* Lessons Section */}
-        <section className="py-8 md:py-12 px-4">
+        <section className="py-12 md:py-16 px-4">
           <div className="max-w-7xl mx-auto">
             <h3 className="text-2xl md:text-3xl font-bold text-center text-dark-slate mb-2">
               Choose Your Lesson
             </h3>
-            <p className="text-center text-islamic-green font-bengali text-base md:text-lg mb-8 md:mb-12">
+            <p className="text-center text-islamic-green font-bengali text-base md:text-lg mb-12 md:mb-16">
               পাঠ বেছে নিন
             </p>
             
-            <div className="grid md:grid-cols-3 gap-10">
+            <div className="grid md:grid-cols-3 gap-8 md:gap-12">
               {/* Quran Learning Section */}
               <div className="bg-white rounded-2xl shadow-xl p-8 border-l-6 border-islamic-green transform hover:scale-105 transition-transform">
                 <div className="flex items-center mb-6">
@@ -177,9 +177,9 @@ export default function Home() {
                     <p className="text-lg text-gray-600 font-bengali">কুরআন শেখা</p>
                   </div>
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-5">
                   <Link href="/chapter/noorani-qaida-chapter">
-                    <div className="p-4 bg-islamic-green text-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer">
+                    <div className="p-5 bg-islamic-green text-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer">
                       <div className="flex justify-between items-center mb-2">
                         <h5 className="text-lg font-semibold">Noorani Qaida</h5>
                         <span className="text-sm bg-white bg-opacity-20 px-2 py-1 rounded">25%</span>
@@ -191,7 +191,7 @@ export default function Home() {
                     </div>
                   </Link>
                   <Link href="/chapter/quran-chapter">
-                    <div className="p-4 bg-islamic-green text-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer">
+                    <div className="p-5 bg-islamic-green text-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer">
                       <div className="flex justify-between items-center mb-2">
                         <h5 className="text-lg font-semibold">Basic Quran Reading</h5>
                         <span className="text-sm bg-white bg-opacity-20 px-2 py-1 rounded">15%</span>
@@ -216,9 +216,9 @@ export default function Home() {
                     <p className="text-lg text-gray-600 font-bengali">নামাজ শিক্ষা</p>
                   </div>
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-5">
                   <Link href="/chapter/salah-chapter">
-                    <div className="p-4 bg-blue-500 text-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer">
+                    <div className="p-5 bg-blue-500 text-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer">
                       <div className="flex justify-between items-center mb-2">
                         <h5 className="text-lg font-semibold">Prayer Basics</h5>
                         <span className="text-sm bg-white bg-opacity-20 px-2 py-1 rounded">40%</span>
@@ -229,7 +229,7 @@ export default function Home() {
                       </div>
                     </div>
                   </Link>
-                  <div className="p-4 bg-gray-100 text-gray-600 rounded-xl shadow-md">
+                  <div className="p-5 bg-gray-100 text-gray-600 rounded-xl shadow-md">
                     <div className="flex justify-between items-center mb-2">
                       <h5 className="text-lg font-semibold">Wudu (Ablution)</h5>
                       <span className="text-sm bg-gray-200 px-2 py-1 rounded">Soon</span>
@@ -250,9 +250,9 @@ export default function Home() {
                     <p className="text-lg text-gray-600 font-bengali">দৈনিক দোয়া</p>
                   </div>
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-5">
                   <Link href="/chapter/dua-chapter">
-                    <div className="p-4 bg-purple-500 text-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer">
+                    <div className="p-5 bg-purple-500 text-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer">
                       <div className="flex justify-between items-center mb-2">
                         <h5 className="text-lg font-semibold">Essential Duas</h5>
                         <span className="text-sm bg-white bg-opacity-20 px-2 py-1 rounded">60%</span>
@@ -263,7 +263,7 @@ export default function Home() {
                       </div>
                     </div>
                   </Link>
-                  <div className="p-4 bg-gray-100 text-gray-600 rounded-xl shadow-md">
+                  <div className="p-5 bg-gray-100 text-gray-600 rounded-xl shadow-md">
                     <div className="flex justify-between items-center mb-2">
                       <h5 className="text-lg font-semibold">Simple Duas for Kids</h5>
                       <span className="text-sm bg-gray-200 px-2 py-1 rounded">Soon</span>
