@@ -1508,32 +1508,9 @@ export class MemStorage implements IStorage {
   }
 
   async getUnlockedChapters(userId: string): Promise<Chapter[]> {
+    // Return all chapters - full access unlocked
     const allChapters = await this.getAllChapters();
-    const userProgress = await this.getUserProgress(userId);
-    
-    const unlockedChapters: Chapter[] = [];
-    
-    for (const chapter of allChapters) {
-      if (chapter.order === 1) {
-        // First chapter is always unlocked
-        unlockedChapters.push(chapter);
-      } else {
-        // Check if previous chapter is completed
-        const previousChapter = allChapters.find(c => c.order === chapter.order - 1);
-        if (previousChapter) {
-          const previousChapterProgress = userProgress.filter(p => p.chapterId === previousChapter.id && p.completed);
-          const completedLessons = previousChapterProgress.length;
-          
-          // Unlock if at least 80% of previous chapter is completed
-          const requiredLessons = Math.ceil(previousChapter.totalLessons * 0.8);
-          if (completedLessons >= requiredLessons) {
-            unlockedChapters.push(chapter);
-          }
-        }
-      }
-    }
-    
-    return unlockedChapters;
+    return allChapters;
   }
 
   // Learning Sessions

@@ -249,15 +249,20 @@ export default function Home() {
                       </div>
                     </div>
                   </Link>
-                  <div className="p-5 bg-gray-100 text-gray-600 rounded-xl shadow-md h-32 flex flex-col justify-between">
-                    <div>
-                      <div className="flex justify-between items-center mb-2">
-                        <h5 className="text-lg font-semibold">Wudu (Ablution)</h5>
-                        <span className="text-sm bg-gray-200 px-2 py-1 rounded">Soon</span>
+                  <Link href="/chapter/quran-chapter">
+                    <div className="p-5 bg-blue-500 text-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer h-32 flex flex-col justify-between">
+                      <div>
+                        <div className="flex justify-between items-center mb-2">
+                          <h5 className="text-lg font-semibold">Basic Quran Reading</h5>
+                          <span className="text-sm bg-white bg-opacity-20 px-2 py-1 rounded">0%</span>
+                        </div>
+                        <p className="text-sm opacity-90">Now unlocked for all students</p>
                       </div>
-                      <p className="text-sm opacity-80">Coming soon for beginners</p>
+                      <div className="bg-white bg-opacity-20 rounded-full h-2">
+                        <div className="bg-white h-2 rounded-full" style={{ width: '0%' }}></div>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 </div>
               </div>
 
