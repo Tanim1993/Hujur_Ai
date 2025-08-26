@@ -36,19 +36,48 @@ export function useAudio() {
       const utterance = new SpeechSynthesisUtterance(text);
       speechRef.current = utterance;
       
-      // Set language and voice
+      // Set language and voice with male preference
       utterance.lang = language === 'bn' ? 'bn-BD' : 'en-US';
-      utterance.rate = 0.8; // Slower speech for children
-      utterance.pitch = 1.1; // Slightly higher pitch for friendliness
+      utterance.rate = language === 'bn' ? 0.7 : 0.8; // Slower for Bengali clarity
+      utterance.pitch = 0.9; // Lower pitch for male voice
       utterance.volume = 0.9;
 
-      // Try to find appropriate voice
+      // Try to find appropriate male voice
       const voices = speechSynthesis.getVoices();
-      const preferredVoice = voices.find(voice => 
-        voice.lang.startsWith(language === 'bn' ? 'bn' : 'en')
-      );
+      let preferredVoice;
+      
+      if (language === 'bn') {
+        // Look for Bengali male voice with various patterns
+        preferredVoice = voices.find(voice => 
+          (voice.lang.includes('bn') || voice.lang.includes('bengali')) && 
+          (voice.name.toLowerCase().includes('male') || voice.name.toLowerCase().includes('man'))
+        ) || voices.find(voice => 
+          voice.lang.includes('bn') || voice.lang.includes('bengali')
+        ) || voices.find(voice => 
+          voice.name.toLowerCase().includes('bengali') || voice.name.toLowerCase().includes('bangla')
+        ) || voices.find(voice => 
+          // Fallback to any available voice that might support Bengali
+          voice.lang.includes('hi') && voice.name.toLowerCase().includes('male') // Hindi male as backup
+        );
+      } else {
+        // Look for English male voice with better patterns
+        preferredVoice = voices.find(voice => 
+          voice.lang.includes('en') && 
+          (voice.name.toLowerCase().includes('male') || voice.name.toLowerCase().includes('man'))
+        ) || voices.find(voice => 
+          voice.lang.includes('en') && 
+          !voice.name.toLowerCase().includes('female') && 
+          !voice.name.toLowerCase().includes('woman')
+        ) || voices.find(voice => 
+          voice.lang.includes('en')
+        );
+      }
+      
       if (preferredVoice) {
         utterance.voice = preferredVoice;
+        console.log(`Using voice: ${preferredVoice.name} (${preferredVoice.lang})`);
+      } else {
+        console.log('No preferred voice found, using default');
       }
 
       // Set up event listeners
