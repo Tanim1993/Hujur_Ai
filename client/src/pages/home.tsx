@@ -177,7 +177,7 @@ export default function Home() {
                     <p className="text-lg text-gray-600 font-bengali">কুরআন শেখা</p>
                   </div>
                 </div>
-                <div className="space-y-5">
+                <div className="space-y-8">
                   <Link href="/chapter/noorani-qaida-chapter">
                     <div className="p-5 bg-islamic-green text-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer">
                       <div className="flex justify-between items-center mb-2">
@@ -216,7 +216,7 @@ export default function Home() {
                     <p className="text-lg text-gray-600 font-bengali">নামাজ শিক্ষা</p>
                   </div>
                 </div>
-                <div className="space-y-5">
+                <div className="space-y-8">
                   <Link href="/chapter/salah-chapter">
                     <div className="p-5 bg-blue-500 text-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer">
                       <div className="flex justify-between items-center mb-2">
@@ -250,7 +250,7 @@ export default function Home() {
                     <p className="text-lg text-gray-600 font-bengali">দৈনিক দোয়া</p>
                   </div>
                 </div>
-                <div className="space-y-5">
+                <div className="space-y-8">
                   <Link href="/chapter/dua-chapter">
                     <div className="p-5 bg-purple-500 text-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer">
                       <div className="flex justify-between items-center mb-2">
