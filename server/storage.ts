@@ -53,6 +53,18 @@ export class MemStorage implements IStorage {
 
   private initializeData() {
     // Initialize with sample chapters
+    const nooraniChapter: Chapter = {
+      id: "noorani-qaida-chapter",
+      name: "Noorani Qaida",
+      nameArabic: "نوراني قاعدة",
+      nameBengali: "নূরানি কায়েদা",
+      description: "Master Arabic fundamentals with traditional Noorani Qaida methodology",
+      icon: "book-open",
+      color: "islamic-green",
+      totalLessons: 5,
+      order: 1,
+    };
+
     const quranChapter: Chapter = {
       id: "quran-chapter",
       name: "Quran",
@@ -62,7 +74,7 @@ export class MemStorage implements IStorage {
       icon: "book-quran",
       color: "islamic-green",
       totalLessons: 5,
-      order: 1,
+      order: 2,
     };
 
     const numbersChapter: Chapter = {
@@ -74,7 +86,7 @@ export class MemStorage implements IStorage {
       icon: "123",
       color: "blue-500",
       totalLessons: 10,
-      order: 2,
+      order: 3,
     };
 
     const greetingsChapter: Chapter = {
@@ -86,7 +98,7 @@ export class MemStorage implements IStorage {
       icon: "hand-heart",
       color: "purple-500",
       totalLessons: 5,
-      order: 3,
+      order: 4,
     };
 
     const salahChapter: Chapter = {
@@ -98,7 +110,7 @@ export class MemStorage implements IStorage {
       icon: "pray",
       color: "warm-sand",
       totalLessons: 10,
-      order: 4,
+      order: 5,
     };
 
     const duaChapter: Chapter = {
@@ -110,9 +122,10 @@ export class MemStorage implements IStorage {
       icon: "hands-praying",
       color: "golden-yellow",
       totalLessons: 8,
-      order: 5,
+      order: 6,
     };
 
+    this.chapters.set(nooraniChapter.id, nooraniChapter);
     this.chapters.set(quranChapter.id, quranChapter);
     this.chapters.set(numbersChapter.id, numbersChapter);
     this.chapters.set(greetingsChapter.id, greetingsChapter);
@@ -120,6 +133,121 @@ export class MemStorage implements IStorage {
     this.chapters.set(duaChapter.id, duaChapter);
 
     // Initialize sample lessons
+    // Noorani Qaida lessons - foundational Arabic learning
+    const nooraniLessons: Lesson[] = [
+      {
+        id: "noorani-lesson-1",
+        chapterId: "noorani-qaida-chapter",
+        title: "Arabic Alphabet - Part 1 (Alif, Ba, Ta)",
+        titleBengali: "আরবি বর্ণমালা - ১ম অংশ (আলিফ, বা, তা)",
+        content: {
+          lesson_type: "noorani",
+          letters: ["ا", "ب", "ت"],
+          transliterations: ["Alif", "Ba", "Ta"],
+          explanation: "Learn the first three letters of the Arabic alphabet with proper pronunciation",
+          interactive: {
+            type: "letter-recognition",
+            options: ["ا", "ب", "ت", "ث"],
+            correct: "ا",
+            question: "Identify the letter Alif"
+          }
+        },
+        audioUrls: {
+          en: "/audio/noorani-1-english.mp3",
+          bn: "/audio/noorani-1-bengali.mp3"
+        },
+        order: 1,
+        difficulty: "beginner"
+      },
+      {
+        id: "noorani-lesson-2",
+        chapterId: "noorani-qaida-chapter",
+        title: "Arabic Alphabet - Part 2 (Tha, Jeem, Haa)",
+        titleBengali: "আরবি বর্ণমালা - ২য় অংশ (সা, জিম, হা)",
+        content: {
+          lesson_type: "noorani",
+          letters: ["ث", "ج", "ح"],
+          transliterations: ["Tha", "Jeem", "Haa"],
+          explanation: "Continue learning Arabic letters with Tha, Jeem, and Haa",
+          interactive: {
+            type: "pronunciation-practice",
+            question: "Practice pronouncing these letters correctly"
+          }
+        },
+        audioUrls: {
+          en: "/audio/noorani-2-english.mp3",
+          bn: "/audio/noorani-2-bengali.mp3"
+        },
+        order: 2,
+        difficulty: "beginner"
+      },
+      {
+        id: "noorani-lesson-3",
+        chapterId: "noorani-qaida-chapter",
+        title: "Short Vowels (Harakat)",
+        titleBengali: "হ্রস্ব স্বরধ্বনি (হারাকাত)",
+        content: {
+          lesson_type: "noorani",
+          vowels: ["َ", "ِ", "ُ"],
+          vowel_names: ["Fatha", "Kasra", "Damma"],
+          explanation: "Learn Fatha, Kasra, and Damma - the three short vowels in Arabic",
+          interactive: {
+            type: "vowel-recognition",
+            question: "Match the correct vowel sound"
+          }
+        },
+        audioUrls: {
+          en: "/audio/noorani-3-english.mp3",
+          bn: "/audio/noorani-3-bengali.mp3"
+        },
+        order: 3,
+        difficulty: "beginner"
+      },
+      {
+        id: "noorani-lesson-4",
+        chapterId: "noorani-qaida-chapter",
+        title: "Sukoon and Tanween",
+        titleBengali: "সুকূন এবং তানবীন",
+        content: {
+          lesson_type: "noorani",
+          marks: ["ْ", "ً", "ٍ", "ٌ"],
+          mark_names: ["Sukoon", "Tanween Fath", "Tanween Kasr", "Tanween Dham"],
+          explanation: "Learn about Sukoon (no vowel) and Tanween (double short vowels)",
+          interactive: {
+            type: "mark-identification",
+            question: "Identify the Sukoon mark"
+          }
+        },
+        audioUrls: {
+          en: "/audio/noorani-4-english.mp3",
+          bn: "/audio/noorani-4-bengali.mp3"
+        },
+        order: 4,
+        difficulty: "intermediate"
+      },
+      {
+        id: "noorani-lesson-5",
+        chapterId: "noorani-qaida-chapter",
+        title: "Connecting Letters",
+        titleBengali: "অক্ষর সংযোগ",
+        content: {
+          lesson_type: "noorani",
+          combinations: ["بت", "جب", "حم"],
+          explanation: "Learn how Arabic letters connect to form words",
+          interactive: {
+            type: "letter-combination",
+            question: "Connect the letters to form words"
+          }
+        },
+        audioUrls: {
+          en: "/audio/noorani-5-english.mp3",
+          bn: "/audio/noorani-5-bengali.mp3"
+        },
+        order: 5,
+        difficulty: "intermediate"
+      }
+    ];
+
     const quranLessons: Lesson[] = [
       {
         id: "quran-lesson-1",
@@ -360,6 +488,7 @@ export class MemStorage implements IStorage {
       }
     ];
 
+    nooraniLessons.forEach(lesson => this.lessons.set(lesson.id, lesson));
     quranLessons.forEach(lesson => this.lessons.set(lesson.id, lesson));
     numbersLessons.forEach(lesson => this.lessons.set(lesson.id, lesson));
     greetingsLessons.forEach(lesson => this.lessons.set(lesson.id, lesson));
