@@ -6,6 +6,12 @@ Hujur is an interactive Islamic learning platform featuring an AI teacher that g
 
 ## Recent Changes (August 2025)
 
+- **Noorani Qaida Learning Module**: Comprehensive implementation of traditional Islamic Arabic learning methodology
+  - **5 Progressive Lessons**: From basic alphabet to letter connections with proper Tajweed foundations
+  - **Interactive Exercises**: Letter recognition, pronunciation practice, and reading comprehension
+  - **Multilevel Structure**: Beginner, intermediate, and advanced lesson categorization
+  - **Progress Tracking**: Individual lesson completion with unlocking system
+  - **Traditional Methodology**: Authentic Noorani Qaida approach adapted for digital learning
 - **Advanced Voice Features**: Implemented comprehensive voice interaction system with three major components:
   - **Tajweed Pronunciation Analysis**: AI-powered feedback on Quranic pronunciation with real-time Tajweed rules assessment
   - **Imam Mode**: Interactive prayer practice sessions with step-by-step guidance and timing

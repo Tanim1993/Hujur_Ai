@@ -7,6 +7,7 @@ import Home from "./pages/home";
 import Chapter from "./pages/chapter";
 import Lesson from "./pages/lesson";
 import AdvancedVoice from "./pages/advanced-voice";
+import NooraniQaida from "./pages/noorani-qaida";
 import NotFound from "./pages/not-found";
 
 function Router() {
@@ -16,6 +17,7 @@ function Router() {
       <Route path="/chapter/:chapterId" component={Chapter} />
       <Route path="/lesson/:lessonId" component={Lesson} />
       <Route path="/advanced-voice" component={AdvancedVoice} />
+      <Route path="/noorani-qaida" component={NooraniQaida} />
       <Route component={NotFound} />
     </Switch>
   );

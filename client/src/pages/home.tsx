@@ -111,23 +111,47 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Advanced Voice Features Banner */}
-        <section className="py-8 px-4 bg-gradient-to-r from-purple-600 to-blue-600">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="bg-white rounded-xl shadow-lg p-8">
-              <div className="text-4xl mb-4">🎤</div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-4">
-                New: Advanced Voice Features!
-              </h3>
-              <p className="text-gray-600 mb-6">
-                Experience Islamic learning with AI-powered Tajweed pronunciation analysis, 
-                guided prayer sessions, and multilingual voice commands in English, Bengali, Arabic & Urdu.
-              </p>
-              <Link href="/advanced-voice">
-                <Button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 text-lg">
-                  Try Voice Features Now →
-                </Button>
-              </Link>
+        {/* New Features Banners */}
+        <section className="py-8 px-4 space-y-6">
+          {/* Noorani Qaida Banner */}
+          <div className="bg-gradient-to-r from-islamic-green-600 to-teal-600">
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="bg-white rounded-xl shadow-lg p-8">
+                <div className="text-4xl mb-4">📖</div>
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                  New: Noorani Qaida Learning Module!
+                </h3>
+                <p className="text-gray-600 mb-6">
+                  Master Arabic fundamentals with our comprehensive Noorani Qaida course. 
+                  Learn letter recognition, vowel sounds, and proper pronunciation through interactive lessons.
+                </p>
+                <Link href="/noorani-qaida">
+                  <Button className="bg-islamic-green-600 hover:bg-islamic-green-700 text-white px-8 py-3 text-lg mr-4">
+                    Start Noorani Qaida →
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Advanced Voice Features Banner */}
+          <div className="bg-gradient-to-r from-purple-600 to-blue-600">
+            <div className="max-w-4xl mx-auto text-center">
+              <div className="bg-white rounded-xl shadow-lg p-8">
+                <div className="text-4xl mb-4">🎤</div>
+                <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                  Advanced Voice Features!
+                </h3>
+                <p className="text-gray-600 mb-6">
+                  Experience Islamic learning with AI-powered Tajweed pronunciation analysis, 
+                  guided prayer sessions, and multilingual voice commands in English, Bengali, Arabic & Urdu.
+                </p>
+                <Link href="/advanced-voice">
+                  <Button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 text-lg">
+                    Try Voice Features →
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </section>
