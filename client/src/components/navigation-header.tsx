@@ -10,6 +10,8 @@ export default function NavigationHeader() {
   const [location] = useLocation();
   const { user, isAuthenticated } = useAuth();
 
+  if (!isAuthenticated) return null;
+
   const toggleLanguage = () => {
     setLanguage(prev => prev === "en" ? "bn" : "en");
   };

@@ -1,24 +1,42 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { setupAuth, isAuthenticated } from "./replitAuth";
 import { insertUserProgressSchema } from "@shared/schema";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Auth middleware
-  await setupAuth(app);
-
-  // Auth routes
-  app.get('/api/auth/user', isAuthenticated, async (req: any, res) => {
+  // Temporary simple auth system - use consistent demo user
+  app.get('/api/auth/user', async (req, res) => {
     try {
-      const userId = req.user.claims.sub;
-      const user = await storage.getUser(userId);
+      // For demo purposes, use a consistent demo user
+      const demoUserId = "demo-user-123";
+      let user = await storage.getUser(demoUserId);
+      
+      if (!user) {
+        user = await storage.createUser({
+          id: demoUserId,
+          username: "Demo Student",
+          email: "demo@example.com",
+          language: "en"
+        });
+      }
+      
       res.json(user);
     } catch (error) {
       console.error("Error fetching user:", error);
       res.status(500).json({ message: "Failed to fetch user" });
     }
+  });
+
+  // Simple login endpoint that creates a demo session
+  app.get('/api/login', async (req, res) => {
+    // For demo, just redirect to home
+    res.redirect('/');
+  });
+
+  app.get('/api/logout', async (req, res) => {
+    // For demo, just redirect to home
+    res.redirect('/');
   });
   
   // Get all chapters

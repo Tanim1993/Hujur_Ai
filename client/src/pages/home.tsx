@@ -10,20 +10,35 @@ import { achievements } from "@/data/lessons";
 import type { Chapter, User as UserType, UserProgress } from "@shared/schema";
 import { Link } from "wouter";
 
-const USER_ID = "default-user";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function Home() {
-  const { data: chapters = [] } = useQuery<Chapter[]>({
-    queryKey: ["/api/users", USER_ID, "chapters"],
-  });
+  const { user: authUser, isLoading: authLoading, isAuthenticated } = useAuth();
 
-  const { data: user } = useQuery<UserType>({
-    queryKey: ["/api/users", USER_ID],
+  const { data: chapters = [] } = useQuery<Chapter[]>({
+    queryKey: ["/api/users", authUser?.id, "chapters"],
+    enabled: !!authUser?.id,
   });
 
   const { data: userProgress = [] } = useQuery<UserProgress[]>({
-    queryKey: ["/api/users", USER_ID, "progress"],
+    queryKey: ["/api/users", authUser?.id, "progress"],
+    enabled: !!authUser?.id,
   });
+
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-ghost-white">
+        <NavigationHeader />
+        <div className="flex items-center justify-center h-64">
+          <div className="text-lg text-gray-600">Loading...</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return <div>Please log in to access the learning dashboard.</div>;
+  }
 
   const getChapterProgress = (chapterId: string) => {
     return userProgress.filter(p => p.chapterId === chapterId && p.completed).length;
@@ -102,12 +117,12 @@ export default function Home() {
               />
               <ProgressCard
                 type="streak"
-                value={`${user?.streak || 0} Days`}
+                value={`${authUser?.streak || 0} Days`}
                 subtitle="Keep it up!"
               />
               <ProgressCard
                 type="achievements"
-                value={Array.isArray(user?.achievements) ? user.achievements.length : 0}
+                value={Array.isArray(authUser?.achievements) ? authUser.achievements.length : 0}
                 subtitle="Badges earned"
               />
             </div>
@@ -171,7 +186,7 @@ export default function Home() {
             
             <div className="grid md:grid-cols-4 gap-6">
               {achievements.map((achievement) => {
-                const isEarned = Array.isArray(user?.achievements) && user.achievements.includes(achievement.id);
+                const isEarned = Array.isArray(authUser?.achievements) && authUser.achievements.includes(achievement.id);
                 return (
                   <AchievementBadge
                     key={achievement.id}
