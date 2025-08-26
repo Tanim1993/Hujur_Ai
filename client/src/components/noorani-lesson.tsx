@@ -519,27 +519,28 @@ export default function NooraniLessonComponent({
   );
 
   return (
-    <div className={`max-w-4xl mx-auto ${className}`} data-testid="noorani-lesson">
+    <div className={`w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 ${className}`} data-testid="noorani-lesson">
       {/* Header */}
-      <div className="mb-8">
-        <div className="flex items-center justify-between mb-4">
+      <div className="mb-6 md:mb-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 space-y-3 sm:space-y-0">
           {onPrevious && (
             <Button
               variant="ghost"
               onClick={onPrevious}
               data-testid="button-back-to-lessons"
+              className="self-start"
             >
               <ArrowLeft size={16} className="mr-2" />
               Back
             </Button>
           )}
           
-          <div className="text-center flex-1">
-            <h1 className="text-2xl font-bold text-gray-800">Noorani Qaida</h1>
+          <div className="text-center flex-1 sm:mx-4">
+            <h1 className="text-xl md:text-2xl font-bold text-gray-800">Noorani Qaida</h1>
             <p className="text-sm text-gray-600">নূরানি কায়েদা</p>
           </div>
           
-          <div className="w-20" /> {/* Spacer for centering */}
+          {!onPrevious && <div className="w-20" />} {/* Spacer for centering when no back button */}
         </div>
 
         <div className="bg-white rounded-lg p-4 border">
@@ -552,13 +553,13 @@ export default function NooraniLessonComponent({
       </div>
 
       {/* AI Teacher */}
-      <div className="mb-8">
+      <div className="mb-6 md:mb-8 flex justify-center">
         <AITeacher
           expression={currentPhase === 'completion' ? 'happy' : 
                      audioState.isPlaying || speechState.isListening ? 'speaking' : 'encouraging'}
           isAnimated={true}
-          size="md"
-          className="mx-auto"
+          size="sm"
+          className="scale-90 sm:scale-100"
         />
       </div>
 

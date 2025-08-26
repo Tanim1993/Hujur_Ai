@@ -38,60 +38,63 @@ export default function Home() {
       
       <main>
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-islamic-green via-islamic-green to-success-green text-white py-12 px-4">
+        <section className="bg-gradient-to-br from-islamic-green via-islamic-green to-success-green text-white py-8 md:py-12 px-4">
           <div className="max-w-7xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div className="text-center md:text-left">
-                <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-8 items-center">
+              <div className="text-center lg:text-left order-2 lg:order-1">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
                   Meet Hujur
-                  <span className="block text-golden-yellow font-bengali">আপনার AI শিক্ষক</span>
+                  <span className="block text-golden-yellow font-bengali text-2xl md:text-3xl lg:text-4xl">আপনার AI শিক্ষক</span>
                 </h2>
-                <p className="text-xl mb-6 opacity-90">
+                <p className="text-lg md:text-xl mb-6 opacity-90">
                   Learn Quran, Salah, and Dua with your friendly AI teacher!
                 </p>
-                <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
                   <Button 
-                    className="bg-golden-yellow text-dark-slate hover:bg-yellow-300 px-6 py-3 text-lg"
+                    className="bg-golden-yellow text-dark-slate hover:bg-yellow-300 px-6 py-3 text-base md:text-lg"
                     asChild
                     data-testid="button-start-learning"
                   >
-                    <Link href="/chapter/quran-chapter">
-                      <Play className="mr-2" />
+                    <Link href="/chapter/noorani-qaida-chapter">
+                      <Play className="mr-2" size={18} />
                       Start Learning
                     </Link>
                   </Button>
                   <Button 
                     variant="outline" 
-                    className="border-2 border-white text-white hover:bg-white hover:text-islamic-green px-6 py-3 text-lg"
+                    className="border-2 border-white text-white hover:bg-white hover:text-islamic-green px-6 py-3 text-base md:text-lg"
                     data-testid="button-my-progress"
                   >
-                    <ChartLine className="mr-2" />
+                    <ChartLine className="mr-2" size={18} />
                     My Progress
                   </Button>
                 </div>
               </div>
               
-              <AITeacher
-                message="Welcome to Hujur! Let's start your Islamic education journey!"
-                messageBengali="হুজুরে স্বাগতম! চলুন আপনার ইসলামী শিক্ষার যাত্রা শুরু করি!"
-                showSpeechBubble={true}
-                size="lg"
-              />
+              <div className="order-1 lg:order-2 flex justify-center">
+                <AITeacher
+                  message="Welcome to Hujur! Let's start your Islamic education journey!"
+                  messageBengali="হুজুরে স্বাগতম! চলুন আপনার ইসলামী শিক্ষার যাত্রা শুরু করি!"
+                  showSpeechBubble={true}
+                  size="md"
+                  className="scale-90 sm:scale-100"
+                />
+              </div>
             </div>
           </div>
         </section>
 
         {/* Progress Overview */}
-        <section className="py-8 px-4 bg-white">
+        <section className="py-6 md:py-8 px-4 bg-white">
           <div className="max-w-7xl mx-auto">
-            <h3 className="text-2xl font-bold text-center text-dark-slate mb-2">
+            <h3 className="text-xl md:text-2xl font-bold text-center text-dark-slate mb-2">
               Your Learning Journey
             </h3>
-            <p className="text-center text-islamic-green font-bengali text-lg mb-8">
+            <p className="text-center text-islamic-green font-bengali text-base md:text-lg mb-6 md:mb-8">
               আপনার শেখার যাত্রা
             </p>
             
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
               <ProgressCard
                 type="progress"
                 value={`${Math.round((totalCompletedLessons / totalLessons) * 100) || 0}%`}
@@ -112,20 +115,20 @@ export default function Home() {
         </section>
 
         {/* Advanced Voice Features Banner */}
-        <section className="py-8 px-4">
-          <div className="bg-gradient-to-r from-purple-600 to-blue-600">
+        <section className="py-6 md:py-8 px-4">
+          <div className="bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl mx-4 md:mx-0">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="bg-white rounded-xl shadow-lg p-8">
-                <div className="text-4xl mb-4">🎤</div>
-                <h3 className="text-2xl font-bold text-gray-800 mb-4">
+              <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
+                <div className="text-3xl md:text-4xl mb-3 md:mb-4">🎤</div>
+                <h3 className="text-xl md:text-2xl font-bold text-gray-800 mb-3 md:mb-4">
                   New: Advanced Voice Features!
                 </h3>
-                <p className="text-gray-600 mb-6">
+                <p className="text-sm md:text-base text-gray-600 mb-4 md:mb-6">
                   Experience Islamic learning with AI-powered Tajweed pronunciation analysis, 
                   guided prayer sessions, and multilingual voice commands in English, Bengali, Arabic & Urdu.
                 </p>
                 <Link href="/advanced-voice">
-                  <Button className="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 text-lg">
+                  <Button className="bg-purple-600 hover:bg-purple-700 text-white px-6 md:px-8 py-2 md:py-3 text-base md:text-lg">
                     Try Voice Features →
                   </Button>
                 </Link>
@@ -135,12 +138,12 @@ export default function Home() {
         </section>
 
         {/* Chapter Selection */}
-        <section className="py-12 px-4">
+        <section className="py-8 md:py-12 px-4">
           <div className="max-w-7xl mx-auto">
-            <h3 className="text-3xl font-bold text-center text-dark-slate mb-2">
+            <h3 className="text-2xl md:text-3xl font-bold text-center text-dark-slate mb-2">
               Choose Your Lesson
             </h3>
-            <p className="text-center text-islamic-green font-bengali text-lg mb-12">
+            <p className="text-center text-islamic-green font-bengali text-base md:text-lg mb-8 md:mb-12">
               পাঠ বেছে নিন
             </p>
             

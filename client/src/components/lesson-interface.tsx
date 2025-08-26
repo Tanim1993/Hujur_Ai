@@ -49,53 +49,54 @@ export default function LessonInterface({
   };
 
   return (
-    <div className={`max-w-4xl mx-auto ${className}`} data-testid="lesson-interface">
-      <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
+    <div className={`w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 ${className}`} data-testid="lesson-interface">
+      <div className="bg-white rounded-xl md:rounded-3xl shadow-xl overflow-hidden">
         {/* Lesson Header */}
-        <div className="bg-gradient-to-r from-islamic-green to-success-green p-6 text-white">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
+        <div className="bg-gradient-to-r from-islamic-green to-success-green p-4 md:p-6 text-white">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between space-y-3 sm:space-y-0">
+            <div className="flex items-center space-x-3 md:space-x-4">
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={onBack}
-                className="w-10 h-10 bg-white bg-opacity-20 rounded-full hover:bg-white hover:bg-opacity-30"
+                className="w-8 h-8 md:w-10 md:h-10 bg-white bg-opacity-20 rounded-full hover:bg-white hover:bg-opacity-30 flex-shrink-0"
                 data-testid="button-back"
               >
-                <ArrowLeft size={20} />
+                <ArrowLeft size={16} className="md:w-5 md:h-5" />
               </Button>
-              <div>
-                <h4 className="text-xl font-bold">{lesson.title}</h4>
+              <div className="min-w-0 flex-1">
+                <h4 className="text-lg md:text-xl font-bold truncate">{lesson.title}</h4>
                 {lesson.titleBengali && (
-                  <p className="text-sm opacity-90 font-bengali">{lesson.titleBengali}</p>
+                  <p className="text-xs md:text-sm opacity-90 font-bengali truncate">{lesson.titleBengali}</p>
                 )}
               </div>
             </div>
-            <div className="text-right">
-              <div className="text-sm opacity-90">Progress</div>
-              <div className="text-lg font-bold" data-testid="lesson-progress">
+            <div className="text-right flex-shrink-0">
+              <div className="text-xs md:text-sm opacity-90">Progress</div>
+              <div className="text-base md:text-lg font-bold" data-testid="lesson-progress">
                 {currentStep}/{totalSteps}
               </div>
             </div>
           </div>
           
-          <Progress value={progressPercentage} className="mt-4 bg-white bg-opacity-20" />
+          <Progress value={progressPercentage} className="mt-3 md:mt-4 bg-white bg-opacity-20" />
         </div>
         
         {/* Lesson Content */}
-        <div className="p-8">
-          <div className="grid md:grid-cols-2 gap-8 items-center">
+        <div className="p-4 md:p-6 lg:p-8">
+          <div className="flex flex-col lg:grid lg:grid-cols-2 gap-6 lg:gap-8">
             {/* AI Teacher Section */}
-            <div className="text-center">
+            <div className="text-center order-1 lg:order-none">
               <AITeacher
                 message={`Let's learn about ${content.letter || content.steps?.[0] || "this lesson"}!`}
                 messageBengali={lesson.titleBengali || "চলুন শিখি!"}
                 showSpeechBubble={true}
-                size="md"
+                size="sm"
                 isAnimating={audioState.isPlaying}
+                className="sm:scale-100"
               />
               
-              <div className="mt-6">
+              <div className="mt-4 md:mt-6">
                 <AudioPlayer
                   englishText={
                     content.letter 
@@ -117,24 +118,24 @@ export default function LessonInterface({
             </div>
             
             {/* Interactive Content */}
-            <div className="space-y-6">
+            <div className="space-y-4 md:space-y-6 order-2 lg:order-none">
               {/* Content Display */}
               {content.letter && (
-                <div className="text-center bg-gradient-to-br from-golden-yellow to-warm-sand p-8 rounded-2xl">
-                  <div className="text-8xl font-bold text-white mb-4">{content.letter}</div>
-                  <div className="text-2xl font-bold text-dark-slate mb-2">
+                <div className="text-center bg-gradient-to-br from-golden-yellow to-warm-sand p-6 md:p-8 rounded-xl md:rounded-2xl">
+                  <div className="text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-3 md:mb-4">{content.letter}</div>
+                  <div className="text-xl md:text-2xl font-bold text-dark-slate mb-2">
                     {content.transliteration}
                   </div>
-                  <div className="text-lg font-bengali text-dark-slate">
+                  <div className="text-base md:text-lg font-bengali text-dark-slate">
                     {lesson.titleBengali?.split(' - ')[1] || content.transliteration}
                   </div>
                 </div>
               )}
 
               {content.arabic && (
-                <div className="text-center bg-gradient-to-br from-islamic-green to-success-green p-8 rounded-2xl text-white">
-                  <div className="text-3xl font-bold mb-4 font-bengali">{content.arabic}</div>
-                  <div className="text-lg mb-2">{content.transliteration}</div>
+                <div className="text-center bg-gradient-to-br from-islamic-green to-success-green p-6 md:p-8 rounded-xl md:rounded-2xl text-white">
+                  <div className="text-2xl md:text-3xl font-bold mb-3 md:mb-4 font-bengali">{content.arabic}</div>
+                  <div className="text-base md:text-lg mb-2">{content.transliteration}</div>
                   <div className="text-sm opacity-90">{content.meaning}</div>
                   {content.bengaliMeaning && (
                     <div className="text-sm font-bengali mt-2 opacity-90">{content.bengaliMeaning}</div>
@@ -144,15 +145,15 @@ export default function LessonInterface({
               
               {/* Interactive Question */}
               {content.interactive.type === 'letter-recognition' && content.interactive.options && (
-                <div className="bg-gray-50 p-6 rounded-2xl">
-                  <h5 className="font-semibold text-dark-slate mb-4 text-center">
+                <div className="bg-gray-50 p-4 md:p-6 rounded-xl md:rounded-2xl">
+                  <h5 className="font-semibold text-dark-slate mb-3 md:mb-4 text-center text-sm md:text-base">
                     Can you find the letter {content.transliteration}?
                   </h5>
-                  <p className="text-center font-bengali text-islamic-green mb-4">
+                  <p className="text-center font-bengali text-islamic-green mb-4 text-sm md:text-base">
                     {content.transliteration} অক্ষরটি খুঁজে বের করুন
                   </p>
                   
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-4">
                     <AnimatePresence>
                       {content.interactive.options.map((option, index) => {
                         const isCorrect = option === content.interactive.correct;
@@ -174,7 +175,7 @@ export default function LessonInterface({
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                             onClick={() => handleAnswerSelect(option)}
-                            className={`p-4 rounded-xl transition-colors text-4xl font-bold ${buttonClass}`}
+                            className={`p-3 md:p-4 rounded-lg md:rounded-xl transition-colors text-2xl md:text-3xl lg:text-4xl font-bold aspect-square flex items-center justify-center ${buttonClass}`}
                             data-testid={`option-${option}`}
                           >
                             {option}
@@ -202,11 +203,11 @@ export default function LessonInterface({
               )}
               
               {/* Action Buttons */}
-              <div className="flex space-x-4">
+              <div className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-4">
                 <Button
                   variant="outline"
                   onClick={onRepeat}
-                  className="flex-1"
+                  className="flex-1 py-3 text-sm md:text-base"
                   data-testid="button-repeat"
                 >
                   <RotateCcw className="mr-2" size={16} />
@@ -214,7 +215,7 @@ export default function LessonInterface({
                 </Button>
                 <Button
                   onClick={onNext}
-                  className="flex-1 bg-success-green hover:bg-green-600"
+                  className="flex-1 bg-success-green hover:bg-green-600 py-3 text-sm md:text-base"
                   data-testid="button-next"
                 >
                   Next
