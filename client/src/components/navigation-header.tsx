@@ -3,10 +3,12 @@ import { useQuery } from "@tanstack/react-query";
 import { Link, useLocation } from "wouter";
 import { useAuth } from "@/hooks/useAuth";
 import type { User } from "@shared/schema";
-import { Church, User as UserIcon, BarChart, Home, BookOpen, Mic, LogOut } from "lucide-react";
+import { Church, User as UserIcon, BarChart, Home, BookOpen, LogOut, ChevronDown } from "lucide-react";
+import { useState as useDropdownState } from "react";
 
 export default function NavigationHeader() {
   const [language, setLanguage] = useState<"en" | "bn">("en");
+  const [lessonsDropdownOpen, setLessonsDropdownOpen] = useDropdownState(false);
   const [location] = useLocation();
   const { user, isAuthenticated } = useAuth();
 
@@ -53,27 +55,51 @@ export default function NavigationHeader() {
               </div>
             </Link>
 
-            <Link href="/noorani-qaida">
-              <div className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-colors cursor-pointer ${
-                isActive('/noorani-qaida') 
-                  ? 'bg-islamic-green text-white' 
-                  : 'text-gray-600 hover:bg-gray-100'
-              }`}>
+            {/* Lessons Dropdown */}
+            <div className="relative">
+              <div 
+                className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-colors cursor-pointer ${
+                  location.includes('/chapter') || location.includes('/lesson')
+                    ? 'bg-islamic-green text-white' 
+                    : 'text-gray-600 hover:bg-gray-100'
+                }`}
+                onClick={() => setLessonsDropdownOpen(!lessonsDropdownOpen)}
+              >
                 <BookOpen size={18} />
-                <span className="text-sm font-medium">Noorani Qaida</span>
+                <span className="text-sm font-medium">Lessons</span>
+                <ChevronDown size={16} className={`transition-transform ${lessonsDropdownOpen ? 'rotate-180' : ''}`} />
               </div>
-            </Link>
-
-            <Link href="/advanced-voice">
-              <div className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-colors cursor-pointer ${
-                isActive('/advanced-voice') 
-                  ? 'bg-islamic-green text-white' 
-                  : 'text-gray-600 hover:bg-gray-100'
-              }`}>
-                <Mic size={18} />
-                <span className="text-sm font-medium">Voice</span>
-              </div>
-            </Link>
+              
+              {lessonsDropdownOpen && (
+                <div className="absolute top-full left-0 mt-2 w-56 bg-white rounded-lg shadow-lg border z-50">
+                  <div className="py-2">
+                    <div className="px-3 py-2 text-xs font-semibold text-gray-500 uppercase">Quran Learning</div>
+                    <Link href="/chapter/noorani-qaida-chapter">
+                      <div className="px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer" onClick={() => setLessonsDropdownOpen(false)}>
+                        Noorani Qaida
+                      </div>
+                    </Link>
+                    <Link href="/chapter/quran-chapter">
+                      <div className="px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer" onClick={() => setLessonsDropdownOpen(false)}>
+                        Basic Quran Reading
+                      </div>
+                    </Link>
+                    
+                    <div className="px-3 py-2 text-xs font-semibold text-gray-500 uppercase mt-2">Prayer & Duas</div>
+                    <Link href="/chapter/salah-chapter">
+                      <div className="px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer" onClick={() => setLessonsDropdownOpen(false)}>
+                        Salah Guide
+                      </div>
+                    </Link>
+                    <Link href="/chapter/dua-chapter">
+                      <div className="px-3 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer" onClick={() => setLessonsDropdownOpen(false)}>
+                        Daily Duas
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
 
             <Link href="/analytics">
               <div className={`flex items-center space-x-2 px-3 py-2 rounded-lg transition-colors cursor-pointer ${
@@ -165,27 +191,17 @@ export default function NavigationHeader() {
               </div>
             </Link>
 
-            <Link href="/noorani-qaida">
-              <div className={`flex flex-col items-center px-3 py-2 rounded-lg transition-colors cursor-pointer ${
-                isActive('/noorani-qaida') 
+            <div 
+              className={`flex flex-col items-center px-3 py-2 rounded-lg transition-colors cursor-pointer ${
+                location.includes('/chapter') || location.includes('/lesson')
                   ? 'bg-islamic-green text-white' 
                   : 'text-gray-600 hover:bg-gray-100'
-              }`}>
-                <BookOpen size={18} />
-                <span className="text-xs mt-1">Qaida</span>
-              </div>
-            </Link>
-
-            <Link href="/advanced-voice">
-              <div className={`flex flex-col items-center px-3 py-2 rounded-lg transition-colors cursor-pointer ${
-                isActive('/advanced-voice') 
-                  ? 'bg-islamic-green text-white' 
-                  : 'text-gray-600 hover:bg-gray-100'
-              }`}>
-                <Mic size={18} />
-                <span className="text-xs mt-1">Voice</span>
-              </div>
-            </Link>
+              }`}
+              onClick={() => setLessonsDropdownOpen(!lessonsDropdownOpen)}
+            >
+              <BookOpen size={18} />
+              <span className="text-xs mt-1">Lessons</span>
+            </div>
 
             <Link href="/analytics">
               <div className={`flex flex-col items-center px-3 py-2 rounded-lg transition-colors cursor-pointer ${
