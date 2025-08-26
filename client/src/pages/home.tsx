@@ -308,9 +308,9 @@ export default function Home() {
             <div>
               <h5 className="font-semibold mb-4">Support</h5>
               <ul className="space-y-2 text-sm text-gray-300">
-                <li><a href="#" className="hover:text-islamic-green transition-colors">Help Center</a></li>
-                <li><a href="#" className="hover:text-islamic-green transition-colors">Parent Guide</a></li>
-                <li><a href="#" className="hover:text-islamic-green transition-colors">Contact Us</a></li>
+                <li><Link href="/help-center" className="hover:text-islamic-green transition-colors">Help Center</Link></li>
+                <li><Link href="/parent-guide" className="hover:text-islamic-green transition-colors">Parent Guide</Link></li>
+                <li><Link href="/contact" className="hover:text-islamic-green transition-colors">Contact Us</Link></li>
               </ul>
             </div>
             

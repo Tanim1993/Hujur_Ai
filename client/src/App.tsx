@@ -10,6 +10,9 @@ import Lesson from "./pages/lesson";
 import AdvancedVoice from "./pages/advanced-voice";
 import NooraniQaida from "./pages/noorani-qaida";
 import Analytics from "./pages/analytics";
+import HelpCenter from "./pages/help-center";
+import ParentGuide from "./pages/parent-guide";
+import Contact from "./pages/contact";
 import NotFound from "./pages/not-found";
 import { useAuth } from "./hooks/useAuth";
 
@@ -28,6 +31,9 @@ function Router() {
           <Route path="/advanced-voice" component={AdvancedVoice} />
           <Route path="/noorani-qaida" component={NooraniQaida} />
           <Route path="/analytics" component={Analytics} />
+          <Route path="/help-center" component={HelpCenter} />
+          <Route path="/parent-guide" component={ParentGuide} />
+          <Route path="/contact" component={Contact} />
         </>
       )}
       <Route component={NotFound} />
