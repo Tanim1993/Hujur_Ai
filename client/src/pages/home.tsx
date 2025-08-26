@@ -179,25 +179,29 @@ export default function Home() {
                 </div>
                 <div className="space-y-8">
                   <Link href="/chapter/noorani-qaida-chapter">
-                    <div className="p-5 bg-islamic-green text-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                      <div className="flex justify-between items-center mb-2">
-                        <h5 className="text-lg font-semibold">Noorani Qaida</h5>
-                        <span className="text-sm bg-white bg-opacity-20 px-2 py-1 rounded">25%</span>
+                    <div className="p-5 bg-islamic-green text-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer h-32 flex flex-col justify-between">
+                      <div>
+                        <div className="flex justify-between items-center mb-2">
+                          <h5 className="text-lg font-semibold">Noorani Qaida</h5>
+                          <span className="text-sm bg-white bg-opacity-20 px-2 py-1 rounded">25%</span>
+                        </div>
+                        <p className="text-sm opacity-90">Traditional Arabic fundamentals</p>
                       </div>
-                      <p className="text-sm opacity-90">Traditional Arabic fundamentals</p>
-                      <div className="mt-3 bg-white bg-opacity-20 rounded-full h-2">
+                      <div className="bg-white bg-opacity-20 rounded-full h-2">
                         <div className="bg-white h-2 rounded-full" style={{ width: '25%' }}></div>
                       </div>
                     </div>
                   </Link>
                   <Link href="/chapter/quran-chapter">
-                    <div className="p-5 bg-islamic-green text-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                      <div className="flex justify-between items-center mb-2">
-                        <h5 className="text-lg font-semibold">Basic Quran Reading</h5>
-                        <span className="text-sm bg-white bg-opacity-20 px-2 py-1 rounded">15%</span>
+                    <div className="p-5 bg-islamic-green text-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer h-32 flex flex-col justify-between">
+                      <div>
+                        <div className="flex justify-between items-center mb-2">
+                          <h5 className="text-lg font-semibold">Basic Quran Reading</h5>
+                          <span className="text-sm bg-white bg-opacity-20 px-2 py-1 rounded">15%</span>
+                        </div>
+                        <p className="text-sm opacity-90">Start with simple surahs</p>
                       </div>
-                      <p className="text-sm opacity-90">Start with simple surahs</p>
-                      <div className="mt-3 bg-white bg-opacity-20 rounded-full h-2">
+                      <div className="bg-white bg-opacity-20 rounded-full h-2">
                         <div className="bg-white h-2 rounded-full" style={{ width: '15%' }}></div>
                       </div>
                     </div>
@@ -218,23 +222,27 @@ export default function Home() {
                 </div>
                 <div className="space-y-8">
                   <Link href="/chapter/salah-chapter">
-                    <div className="p-5 bg-blue-500 text-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                      <div className="flex justify-between items-center mb-2">
-                        <h5 className="text-lg font-semibold">Prayer Basics</h5>
-                        <span className="text-sm bg-white bg-opacity-20 px-2 py-1 rounded">40%</span>
+                    <div className="p-5 bg-blue-500 text-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer h-32 flex flex-col justify-between">
+                      <div>
+                        <div className="flex justify-between items-center mb-2">
+                          <h5 className="text-lg font-semibold">Prayer Basics</h5>
+                          <span className="text-sm bg-white bg-opacity-20 px-2 py-1 rounded">40%</span>
+                        </div>
+                        <p className="text-sm opacity-90">Learn how to pray step by step</p>
                       </div>
-                      <p className="text-sm opacity-90">Learn how to pray step by step</p>
-                      <div className="mt-3 bg-white bg-opacity-20 rounded-full h-2">
+                      <div className="bg-white bg-opacity-20 rounded-full h-2">
                         <div className="bg-white h-2 rounded-full" style={{ width: '40%' }}></div>
                       </div>
                     </div>
                   </Link>
-                  <div className="p-5 bg-gray-100 text-gray-600 rounded-xl shadow-md">
-                    <div className="flex justify-between items-center mb-2">
-                      <h5 className="text-lg font-semibold">Wudu (Ablution)</h5>
-                      <span className="text-sm bg-gray-200 px-2 py-1 rounded">Soon</span>
+                  <div className="p-5 bg-gray-100 text-gray-600 rounded-xl shadow-md h-32 flex flex-col justify-between">
+                    <div>
+                      <div className="flex justify-between items-center mb-2">
+                        <h5 className="text-lg font-semibold">Wudu (Ablution)</h5>
+                        <span className="text-sm bg-gray-200 px-2 py-1 rounded">Soon</span>
+                      </div>
+                      <p className="text-sm opacity-80">Coming soon for beginners</p>
                     </div>
-                    <p className="text-sm opacity-80">Coming soon for beginners</p>
                   </div>
                 </div>
               </div>
@@ -252,23 +260,27 @@ export default function Home() {
                 </div>
                 <div className="space-y-8">
                   <Link href="/chapter/dua-chapter">
-                    <div className="p-5 bg-purple-500 text-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer">
-                      <div className="flex justify-between items-center mb-2">
-                        <h5 className="text-lg font-semibold">Essential Duas</h5>
-                        <span className="text-sm bg-white bg-opacity-20 px-2 py-1 rounded">60%</span>
+                    <div className="p-5 bg-purple-500 text-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer h-32 flex flex-col justify-between">
+                      <div>
+                        <div className="flex justify-between items-center mb-2">
+                          <h5 className="text-lg font-semibold">Essential Duas</h5>
+                          <span className="text-sm bg-white bg-opacity-20 px-2 py-1 rounded">60%</span>
+                        </div>
+                        <p className="text-sm opacity-90">Morning, evening & meal duas</p>
                       </div>
-                      <p className="text-sm opacity-90">Morning, evening & meal duas</p>
-                      <div className="mt-3 bg-white bg-opacity-20 rounded-full h-2">
+                      <div className="bg-white bg-opacity-20 rounded-full h-2">
                         <div className="bg-white h-2 rounded-full" style={{ width: '60%' }}></div>
                       </div>
                     </div>
                   </Link>
-                  <div className="p-5 bg-gray-100 text-gray-600 rounded-xl shadow-md">
-                    <div className="flex justify-between items-center mb-2">
-                      <h5 className="text-lg font-semibold">Simple Duas for Kids</h5>
-                      <span className="text-sm bg-gray-200 px-2 py-1 rounded">Soon</span>
+                  <div className="p-5 bg-gray-100 text-gray-600 rounded-xl shadow-md h-32 flex flex-col justify-between">
+                    <div>
+                      <div className="flex justify-between items-center mb-2">
+                        <h5 className="text-lg font-semibold">Simple Duas for Kids</h5>
+                        <span className="text-sm bg-gray-200 px-2 py-1 rounded">Soon</span>
+                      </div>
+                      <p className="text-sm opacity-80">Easy duas for beginners</p>
                     </div>
-                    <p className="text-sm opacity-80">Easy duas for beginners</p>
                   </div>
                 </div>
               </div>
