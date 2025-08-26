@@ -7,10 +7,10 @@ import NavigationHeader from "@/components/navigation-header";
 import AITeacher from "@/components/ai-teacher";
 import type { Chapter, Lesson, UserProgress } from "@shared/schema";
 import { motion } from "framer-motion";
-
-const USER_ID = "default-user";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function ChapterPage() {
+  const { user: authUser, isLoading: authLoading, isAuthenticated } = useAuth();
   const [, params] = useRoute("/chapter/:chapterId");
   const chapterId = params?.chapterId || "";
 
@@ -25,9 +25,38 @@ export default function ChapterPage() {
   });
 
   const { data: progress = [] } = useQuery<UserProgress[]>({
-    queryKey: ["/api/users", USER_ID, "chapters", chapterId, "progress"],
-    enabled: !!chapterId,
+    queryKey: ["/api/users", authUser?.id, "chapters", chapterId, "progress"],
+    enabled: !!chapterId && !!authUser?.id,
   });
+
+  if (authLoading) {
+    return (
+      <div className="min-h-screen bg-ghost-white">
+        <NavigationHeader />
+        <div className="flex items-center justify-center h-96">
+          <div className="text-center">
+            <div className="text-lg text-gray-600">Loading...</div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-ghost-white">
+        <NavigationHeader />
+        <div className="flex items-center justify-center h-96">
+          <div className="text-center">
+            <h2 className="text-2xl font-bold text-dark-slate">Please log in to access chapters</h2>
+            <Link href="/">
+              <Button className="mt-4">Go Home</Button>
+            </Link>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (!chapter) {
     return (
