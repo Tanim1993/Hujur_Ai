@@ -165,79 +165,109 @@ export default function Home() {
               পাঠ বেছে নিন
             </p>
             
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-3 gap-10">
               {/* Quran Learning Section */}
-              <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-islamic-green">
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-islamic-green rounded-full flex items-center justify-center mr-4">
-                    <span className="text-white text-2xl">📖</span>
+              <div className="bg-white rounded-2xl shadow-xl p-8 border-l-6 border-islamic-green transform hover:scale-105 transition-transform">
+                <div className="flex items-center mb-6">
+                  <div className="w-16 h-16 bg-islamic-green rounded-full flex items-center justify-center mr-4">
+                    <span className="text-white text-3xl">📖</span>
                   </div>
                   <div>
-                    <h4 className="text-xl font-bold text-dark-slate">Quran Learning</h4>
-                    <p className="text-sm text-gray-600 font-bengali">কুরআন শেখা</p>
+                    <h4 className="text-2xl font-bold text-dark-slate">Quran Learning</h4>
+                    <p className="text-lg text-gray-600 font-bengali">কুরআন শেখা</p>
                   </div>
                 </div>
-                <div className="space-y-3">
+                <div className="space-y-4">
                   <Link href="/chapter/noorani-qaida-chapter">
-                    <div className="p-3 bg-gray-50 rounded-lg hover:bg-islamic-green hover:text-white transition-colors cursor-pointer">
-                      <h5 className="font-semibold">Noorani Qaida</h5>
-                      <p className="text-sm opacity-80">Traditional Arabic fundamentals</p>
+                    <div className="p-4 bg-islamic-green text-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer">
+                      <div className="flex justify-between items-center mb-2">
+                        <h5 className="text-lg font-semibold">Noorani Qaida</h5>
+                        <span className="text-sm bg-white bg-opacity-20 px-2 py-1 rounded">25%</span>
+                      </div>
+                      <p className="text-sm opacity-90">Traditional Arabic fundamentals</p>
+                      <div className="mt-3 bg-white bg-opacity-20 rounded-full h-2">
+                        <div className="bg-white h-2 rounded-full" style={{ width: '25%' }}></div>
+                      </div>
                     </div>
                   </Link>
                   <Link href="/chapter/quran-chapter">
-                    <div className="p-3 bg-gray-50 rounded-lg hover:bg-islamic-green hover:text-white transition-colors cursor-pointer">
-                      <h5 className="font-semibold">Basic Quran Reading</h5>
-                      <p className="text-sm opacity-80">Start with simple surahs</p>
+                    <div className="p-4 bg-islamic-green text-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer">
+                      <div className="flex justify-between items-center mb-2">
+                        <h5 className="text-lg font-semibold">Basic Quran Reading</h5>
+                        <span className="text-sm bg-white bg-opacity-20 px-2 py-1 rounded">15%</span>
+                      </div>
+                      <p className="text-sm opacity-90">Start with simple surahs</p>
+                      <div className="mt-3 bg-white bg-opacity-20 rounded-full h-2">
+                        <div className="bg-white h-2 rounded-full" style={{ width: '15%' }}></div>
+                      </div>
                     </div>
                   </Link>
                 </div>
               </div>
 
               {/* Salah Guide Section */}
-              <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-blue-500">
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mr-4">
-                    <span className="text-white text-2xl">🕌</span>
+              <div className="bg-white rounded-2xl shadow-xl p-8 border-l-6 border-blue-500 transform hover:scale-105 transition-transform">
+                <div className="flex items-center mb-6">
+                  <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mr-4">
+                    <span className="text-white text-3xl">🕌</span>
                   </div>
                   <div>
-                    <h4 className="text-xl font-bold text-dark-slate">Salah Guide</h4>
-                    <p className="text-sm text-gray-600 font-bengali">নামাজ শিক্ষা</p>
+                    <h4 className="text-2xl font-bold text-dark-slate">Salah Guide</h4>
+                    <p className="text-lg text-gray-600 font-bengali">নামাজ শিক্ষা</p>
                   </div>
                 </div>
-                <div className="space-y-3">
+                <div className="space-y-4">
                   <Link href="/chapter/salah-chapter">
-                    <div className="p-3 bg-gray-50 rounded-lg hover:bg-blue-500 hover:text-white transition-colors cursor-pointer">
-                      <h5 className="font-semibold">Prayer Basics</h5>
-                      <p className="text-sm opacity-80">Learn how to pray step by step</p>
+                    <div className="p-4 bg-blue-500 text-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer">
+                      <div className="flex justify-between items-center mb-2">
+                        <h5 className="text-lg font-semibold">Prayer Basics</h5>
+                        <span className="text-sm bg-white bg-opacity-20 px-2 py-1 rounded">40%</span>
+                      </div>
+                      <p className="text-sm opacity-90">Learn how to pray step by step</p>
+                      <div className="mt-3 bg-white bg-opacity-20 rounded-full h-2">
+                        <div className="bg-white h-2 rounded-full" style={{ width: '40%' }}></div>
+                      </div>
                     </div>
                   </Link>
-                  <div className="p-3 bg-gray-50 rounded-lg opacity-60">
-                    <h5 className="font-semibold">Wudu (Ablution)</h5>
+                  <div className="p-4 bg-gray-100 text-gray-600 rounded-xl shadow-md">
+                    <div className="flex justify-between items-center mb-2">
+                      <h5 className="text-lg font-semibold">Wudu (Ablution)</h5>
+                      <span className="text-sm bg-gray-200 px-2 py-1 rounded">Soon</span>
+                    </div>
                     <p className="text-sm opacity-80">Coming soon for beginners</p>
                   </div>
                 </div>
               </div>
 
               {/* Daily Duas Section */}
-              <div className="bg-white rounded-xl shadow-lg p-6 border-l-4 border-purple-500">
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mr-4">
-                    <span className="text-white text-2xl">🤲</span>
+              <div className="bg-white rounded-2xl shadow-xl p-8 border-l-6 border-purple-500 transform hover:scale-105 transition-transform">
+                <div className="flex items-center mb-6">
+                  <div className="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mr-4">
+                    <span className="text-white text-3xl">🤲</span>
                   </div>
                   <div>
-                    <h4 className="text-xl font-bold text-dark-slate">Daily Duas</h4>
-                    <p className="text-sm text-gray-600 font-bengali">দৈনিক দোয়া</p>
+                    <h4 className="text-2xl font-bold text-dark-slate">Daily Duas</h4>
+                    <p className="text-lg text-gray-600 font-bengali">দৈনিক দোয়া</p>
                   </div>
                 </div>
-                <div className="space-y-3">
+                <div className="space-y-4">
                   <Link href="/chapter/dua-chapter">
-                    <div className="p-3 bg-gray-50 rounded-lg hover:bg-purple-500 hover:text-white transition-colors cursor-pointer">
-                      <h5 className="font-semibold">Essential Duas</h5>
-                      <p className="text-sm opacity-80">Morning, evening & meal duas</p>
+                    <div className="p-4 bg-purple-500 text-white rounded-xl shadow-md hover:shadow-lg transition-shadow cursor-pointer">
+                      <div className="flex justify-between items-center mb-2">
+                        <h5 className="text-lg font-semibold">Essential Duas</h5>
+                        <span className="text-sm bg-white bg-opacity-20 px-2 py-1 rounded">60%</span>
+                      </div>
+                      <p className="text-sm opacity-90">Morning, evening & meal duas</p>
+                      <div className="mt-3 bg-white bg-opacity-20 rounded-full h-2">
+                        <div className="bg-white h-2 rounded-full" style={{ width: '60%' }}></div>
+                      </div>
                     </div>
                   </Link>
-                  <div className="p-3 bg-gray-50 rounded-lg opacity-60">
-                    <h5 className="font-semibold">Simple Duas for Kids</h5>
+                  <div className="p-4 bg-gray-100 text-gray-600 rounded-xl shadow-md">
+                    <div className="flex justify-between items-center mb-2">
+                      <h5 className="text-lg font-semibold">Simple Duas for Kids</h5>
+                      <span className="text-sm bg-gray-200 px-2 py-1 rounded">Soon</span>
+                    </div>
                     <p className="text-sm opacity-80">Easy duas for beginners</p>
                   </div>
                 </div>
