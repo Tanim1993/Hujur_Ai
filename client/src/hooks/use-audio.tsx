@@ -36,28 +36,35 @@ export function useAudio() {
       const utterance = new SpeechSynthesisUtterance(text);
       speechRef.current = utterance;
       
-      // Set language and voice with male preference
-      utterance.lang = language === 'bn' ? 'bn-BD' : 'en-US';
-      utterance.rate = language === 'bn' ? 0.7 : 0.8; // Slower for Bengali clarity
-      utterance.pitch = 0.9; // Lower pitch for male voice
-      utterance.volume = 0.9;
+      // Set language and voice with more natural settings
+      utterance.lang = language === 'bn' ? 'bn-IN' : 'en-US'; // Use Indian Bengali for better voice support
+      utterance.rate = language === 'bn' ? 0.6 : 0.75; // Much slower for natural speech
+      utterance.pitch = language === 'bn' ? 0.8 : 0.85; // Lower pitch for Bengali male voice
+      utterance.volume = 0.95;
 
       // Try to find appropriate male voice
       const voices = speechSynthesis.getVoices();
       let preferredVoice;
       
       if (language === 'bn') {
-        // Look for Bengali male voice with various patterns
+        // Comprehensive search for Bengali voices with prioritization
         preferredVoice = voices.find(voice => 
-          (voice.lang.includes('bn') || voice.lang.includes('bengali')) && 
-          (voice.name.toLowerCase().includes('male') || voice.name.toLowerCase().includes('man'))
+          voice.lang === 'bn-IN' && voice.name.toLowerCase().includes('male')
         ) || voices.find(voice => 
-          voice.lang.includes('bn') || voice.lang.includes('bengali')
+          voice.lang === 'bn-BD' && voice.name.toLowerCase().includes('male')
+        ) || voices.find(voice => 
+          voice.lang.includes('bn-IN')
+        ) || voices.find(voice => 
+          voice.lang.includes('bn-BD')
+        ) || voices.find(voice => 
+          voice.lang.includes('bn')
         ) || voices.find(voice => 
           voice.name.toLowerCase().includes('bengali') || voice.name.toLowerCase().includes('bangla')
         ) || voices.find(voice => 
-          // Fallback to any available voice that might support Bengali
-          voice.lang.includes('hi') && voice.name.toLowerCase().includes('male') // Hindi male as backup
+          // Use Hindi male as fallback for similar pronunciation patterns
+          voice.lang.includes('hi-IN') && voice.name.toLowerCase().includes('male')
+        ) || voices.find(voice => 
+          voice.lang.includes('hi')
         );
       } else {
         // Look for English male voice with better patterns
@@ -78,6 +85,8 @@ export function useAudio() {
         console.log(`Using voice: ${preferredVoice.name} (${preferredVoice.lang})`);
       } else {
         console.log('No preferred voice found, using default');
+        // Log available voices for debugging
+        console.log('Available voices:', voices.map(v => `${v.name} (${v.lang})`));
       }
 
       // Set up event listeners
