@@ -78,10 +78,13 @@ export default function Home() {
                   <Button 
                     variant="outline" 
                     className="border-2 border-white text-white hover:bg-white hover:text-islamic-green px-6 py-3 text-base md:text-lg"
+                    asChild
                     data-testid="button-my-progress"
                   >
-                    <ChartLine className="mr-2" size={18} />
-                    My Progress
+                    <Link href="/analytics">
+                      <ChartLine className="mr-2" size={18} />
+                      My Progress
+                    </Link>
                   </Button>
                 </div>
               </div>
